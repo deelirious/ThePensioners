@@ -100,13 +100,15 @@ namespace Someren
             teacherListView.View = View.Details;
             teacherListView.FullRowSelect = true;
 
+            teacherListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Supervisor", -2, HorizontalAlignment.Left);
 
             foreach (SomerenModel.Teacher teacher in teachers)
             {
-                ListViewItem entryListItem = teacherListView.Items.Add(teacher.getFirstName());
+                ListViewItem entryListItem = teacherListView.Items.Add(teacher.getId().ToString());
+                entryListItem.SubItems.Add(teacher.getFirstName());
                 entryListItem.SubItems.Add(teacher.getLastName());
 
                 if (teacher.getIsSupervisor() == true)

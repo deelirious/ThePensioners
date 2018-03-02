@@ -65,6 +65,7 @@ namespace Someren
 
         public class Teacher
         {
+            private int id;
             private string firstName;
             private string lastName;
             private bool isSupervisor;
@@ -80,6 +81,12 @@ namespace Someren
 
             */
 
+            public void setId(int teacherId)
+            {
+                id = teacherId;
+
+            }
+
             public void setFirstName(string newName)
             {
                 firstName = newName;
@@ -93,6 +100,11 @@ namespace Someren
             public void setIsSupervisor(bool newValue)
             {
                 isSupervisor = newValue;
+            }
+
+            public int getId()
+            {
+                return id;
             }
 
             public string getFirstName()

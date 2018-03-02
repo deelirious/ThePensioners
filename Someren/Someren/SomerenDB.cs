@@ -128,7 +128,8 @@ namespace Someren
             while (reader.Read())
             {
                 SomerenModel.Teacher teacher = new SomerenModel.Teacher();
-            
+
+                teacher.setId((int)reader["Id"]);
                 teacher.setFirstName((string)reader["FirstName"]);
                 teacher.setLastName((string)reader["LastName"]);
                 teacher.setIsSupervisor((bool)reader["is_supervisor"]);
