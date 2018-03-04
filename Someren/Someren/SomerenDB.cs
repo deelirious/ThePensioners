@@ -13,13 +13,11 @@ namespace Someren
         private static SqlConnection openConnectionDB()
         {
 
-            // replace this with the connection string you received from Thijs Otter
             string host = "den1.mssql5.gear.host";
             string db = "projectdbgroupb2";
             string user = "projectdbgroupb2";
             string password = "Ps48dm3X-X4!";
-            //string port = "3306";
-
+          
             try
             {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -52,21 +50,10 @@ namespace Someren
             SqlConnection connection = openConnectionDB();
             List<SomerenModel.Student> students_list = new List<SomerenModel.Student>();
             
-           
-            //connection.Open();
             StringBuilder sb = new StringBuilder();
             // write your query here to ensure a list of students is shown
             sb.Append("SELECT * FROM Students");
            
-            //sb.Append("");
-
-            /* EXAMPLE QUERY */
-            //sb.Append("SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName ");
-            //sb.Append("FROM [SalesLT].[ProductCategory] pc ");
-            //sb.Append("JOIN [SalesLT].[Product] p ");
-            //sb.Append("ON pc.productcategoryid = p.productcategoryid;");
-            /* */
-
             String sql = sb.ToString();
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -77,6 +64,7 @@ namespace Someren
                 student.setId((int)reader["student_id"]);
                 student.setFirstName((string)reader["FirstName"]);
                 student.setLastName((string)reader["LastName"]);
+                student.setRoomNumber((int)reader["room_number_id"]);
 
                 students_list.Add(student);
             }
@@ -89,15 +77,12 @@ namespace Someren
         public static List<SomerenModel.Rooms> DB_getRooms()
         {
             SqlConnection connection = openConnectionDB();
-            // SqlConnection connection = new SqlConnection(connString);
             List<SomerenModel.Rooms> rooms_list = new List<SomerenModel.Rooms>();
 
             
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT * FROM Rooms");
-            //  SqlCommand command = new SqlCommand(sqlQuery, dbConnection);
-
-
+           
             String sql = sb.ToString();
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -133,6 +118,7 @@ namespace Someren
                 teacher.setFirstName((string)reader["FirstName"]);
                 teacher.setLastName((string)reader["LastName"]);
                 teacher.setIsSupervisor((bool)reader["IsSupervisor"]);
+                teacher.setRoomNumber((int)reader["room_number_id"]);
 
                 teacherList.Add(teacher);
             }

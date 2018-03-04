@@ -13,6 +13,7 @@ namespace Someren
             int id;
             string firstName;
             string lastName;
+            int roomNumber;
 
 
             public void setId(int studentId)
@@ -32,6 +33,11 @@ namespace Someren
 
             }
 
+            public void setRoomNumber(int room_number)
+            {
+                roomNumber = room_number;
+            }
+
             public string getFirstName()
             {
                 return firstName;
@@ -45,6 +51,11 @@ namespace Someren
             public int getId()
             {
                 return id;
+            }
+
+            public int getRoomNumber()
+            {
+                return roomNumber;
             }
 
         }
@@ -69,6 +80,7 @@ namespace Someren
             private string firstName;
             private string lastName;
             private bool isSupervisor;
+            int roomNumber;
 
             /*
             could use properties instead:
@@ -102,6 +114,11 @@ namespace Someren
                 isSupervisor = newValue;
             }
 
+            public void setRoomNumber(int room_number)
+            {
+                roomNumber = room_number;
+            }
+
             public int getId()
             {
                 return id;
@@ -120,6 +137,11 @@ namespace Someren
             public bool getIsSupervisor()
             {
                 return isSupervisor;
+            }
+
+            public int getRoomNumber()
+            {
+                return roomNumber;
             }
         }
 

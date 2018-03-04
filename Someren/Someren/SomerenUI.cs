@@ -19,8 +19,8 @@ namespace Someren
             // Making a list and editing its format 
             int aantal = students.Count();
             ListView c = new ListView();
-            c.Height = 1000;
-            c.Width = 500;
+            c.Height = 370;
+            c.Width = 370;
             c.View = View.Details;
             c.FullRowSelect = true;
 
@@ -28,6 +28,7 @@ namespace Someren
             c.Columns.Add("ID", -2, HorizontalAlignment.Left);
             c.Columns.Add("First Name", -2, HorizontalAlignment.Left);
             c.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
+            c.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
 
             // storing data into the list
             foreach (SomerenModel.Student student in students)
@@ -35,6 +36,7 @@ namespace Someren
                 ListViewItem entryListItem = c.Items.Add(student.getId().ToString());
                 entryListItem.SubItems.Add(student.getFirstName().ToString());
                 entryListItem.SubItems.Add(student.getLastName().ToString());
+                entryListItem.SubItems.Add(student.getRoomNumber().ToString());
             }
 
             return c;
@@ -50,8 +52,8 @@ namespace Someren
             // Making a list and editing its format 
             int aantal = rooms.Count();
             ListView c = new ListView();
-            c.Height = 1000;
-            c.Width = 500;
+            c.Height = 370;
+            c.Width = 370;
             c.View = View.Details;
             c.FullRowSelect = true;
 
@@ -95,8 +97,8 @@ namespace Someren
             // we will add this list view to the panel later so the UI updates
             ListView teacherListView = new ListView();
 
-            teacherListView.Height = 1000;
-            teacherListView.Width = 500;
+            teacherListView.Height = 370;
+            teacherListView.Width = 370;
             teacherListView.View = View.Details;
             teacherListView.FullRowSelect = true;
 
@@ -104,13 +106,14 @@ namespace Someren
             teacherListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Supervisor", -2, HorizontalAlignment.Left);
+            teacherListView.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
 
             foreach (SomerenModel.Teacher teacher in teachers)
             {
                 ListViewItem entryListItem = teacherListView.Items.Add(teacher.getId().ToString());
                 entryListItem.SubItems.Add(teacher.getFirstName());
                 entryListItem.SubItems.Add(teacher.getLastName());
-
+               
                 if (teacher.getIsSupervisor() == true)
                 {
                     entryListItem.SubItems.Add("yes");
@@ -119,6 +122,8 @@ namespace Someren
                 {
                     entryListItem.SubItems.Add("no");
                 }
+
+                entryListItem.SubItems.Add(teacher.getRoomNumber().ToString());
             }
 
             return teacherListView;
