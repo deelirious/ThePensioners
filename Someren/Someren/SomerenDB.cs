@@ -74,7 +74,7 @@ namespace Someren
             while (reader.Read())
             {
                 SomerenModel.Student student = new SomerenModel.Student();
-                student.setId((int)reader["Id"]);
+                student.setId((int)reader["student_id"]);
                 student.setFirstName((string)reader["FirstName"]);
                 student.setLastName((string)reader["LastName"]);
 
@@ -105,7 +105,7 @@ namespace Someren
             while (reader.Read())
             {
                 SomerenModel.Rooms room = new SomerenModel.Rooms();
-                room.setRoomNumber((int)reader["RoomNumber"]);
+                room.setRoomNumber((int)reader["room_number_id"]);
                 room.setRoomCapacity((int)reader["RoomCapacity"]);
                 room.setRoomType((bool)reader["RoomType"]);
                 rooms_list.Add(room);
@@ -129,10 +129,10 @@ namespace Someren
             {
                 SomerenModel.Teacher teacher = new SomerenModel.Teacher();
 
-                teacher.setId((int)reader["Id"]);
+                teacher.setId((int)reader["teacher_id"]);
                 teacher.setFirstName((string)reader["FirstName"]);
                 teacher.setLastName((string)reader["LastName"]);
-                teacher.setIsSupervisor((bool)reader["is_supervisor"]);
+                teacher.setIsSupervisor((bool)reader["IsSupervisor"]);
 
                 teacherList.Add(teacher);
             }

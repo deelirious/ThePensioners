@@ -16,7 +16,7 @@ namespace Someren
             // linking the list to the DB connection in order to get data from it
             students = SomerenDB.DB_getStudents();
 
-            // Makeing a list and editing its format 
+            // Making a list and editing its format 
             int aantal = students.Count();
             ListView c = new ListView();
             c.Height = 1000;
@@ -47,7 +47,7 @@ namespace Someren
             // linking the list to the DB connection in order to get data from it
             rooms = SomerenDB.DB_getRooms();
 
-            // Makeing a list and editing its format 
+            // Making a list and editing its format 
             int aantal = rooms.Count();
             ListView c = new ListView();
             c.Height = 1000;
