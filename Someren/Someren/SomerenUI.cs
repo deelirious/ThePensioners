@@ -17,29 +17,29 @@ namespace Someren
             students = SomerenDB.DB_getStudents();
 
             // Making a list and editing its format 
-            int aantal = students.Count();
-            ListView c = new ListView();
-            c.Height = 370;
-            c.Width = 370;
-            c.View = View.Details;
-            c.FullRowSelect = true;
+            //int aantal = students.Count();
+            ListView studentsListView = new ListView();
+            studentsListView.Height = 370;
+            studentsListView.Width = 370;
+            studentsListView.View = View.Details;
+            studentsListView.FullRowSelect = true;
 
             // adding colums to the list
-            c.Columns.Add("ID", -2, HorizontalAlignment.Left);
-            c.Columns.Add("First Name", -2, HorizontalAlignment.Left);
-            c.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
-            c.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
+            studentsListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
+            studentsListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
+            studentsListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
+            studentsListView.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
 
             // storing data into the list
             foreach (SomerenModel.Student student in students)
             {
-                ListViewItem entryListItem = c.Items.Add(student.getId().ToString());
+                ListViewItem entryListItem = studentsListView.Items.Add(student.getId().ToString());
                 entryListItem.SubItems.Add(student.getFirstName().ToString());
                 entryListItem.SubItems.Add(student.getLastName().ToString());
                 entryListItem.SubItems.Add(student.getRoomNumber().ToString());
             }
 
-            return c;
+            return studentsListView;
         }
 
         public static Control showRooms()
@@ -50,22 +50,22 @@ namespace Someren
             rooms = SomerenDB.DB_getRooms();
 
             // Making a list and editing its format 
-            int aantal = rooms.Count();
-            ListView c = new ListView();
-            c.Height = 370;
-            c.Width = 370;
-            c.View = View.Details;
-            c.FullRowSelect = true;
+            //int aantal = rooms.Count();
+            ListView roomsListView = new ListView();
+            roomsListView.Height = 370;
+            roomsListView.Width = 370;
+            roomsListView.View = View.Details;
+            roomsListView.FullRowSelect = true;
 
             // adding colums to the list
-            c.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
-            c.Columns.Add("Room Capacity", -2, HorizontalAlignment.Left);
-            c.Columns.Add("Room Type", -2, HorizontalAlignment.Left);
+            roomsListView.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
+            roomsListView.Columns.Add("Room Capacity", -2, HorizontalAlignment.Left);
+            roomsListView.Columns.Add("Room Type", -2, HorizontalAlignment.Left);
 
             // storing data into the list
             foreach (SomerenModel.Rooms room in rooms)
             {
-                ListViewItem entryListItem = c.Items.Add(room.getRoomNumber().ToString());
+                ListViewItem entryListItem = roomsListView.Items.Add(room.getRoomNumber().ToString());
                 entryListItem.SubItems.Add(room.getRoomCapacity().ToString());
                 
                 if (room.getRoomType() == true)
@@ -78,7 +78,7 @@ namespace Someren
                 }
             }
 
-            return c;
+            return roomsListView;
         }
 
         public static Control addUILabel(string text)
