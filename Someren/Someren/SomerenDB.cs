@@ -52,7 +52,7 @@ namespace Someren
             
             StringBuilder sb = new StringBuilder();
             // write your query here to ensure a list of students is shown
-            sb.Append("SELECT * FROM Students");
+            sb.Append("SELECT student_id, FirstName,LastName ,room_number_id  FROM Students");
            
             String sql = sb.ToString();
 
@@ -81,7 +81,7 @@ namespace Someren
 
             
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT * FROM Rooms");
+            sb.Append("SELECT room_number_id, RoomCapacity, RoomType  FROM Rooms");
            
             String sql = sb.ToString();
 
@@ -106,7 +106,8 @@ namespace Someren
             SqlConnection connection = openConnectionDB();
             List<SomerenModel.Teacher> teacherList = new List<SomerenModel.Teacher>();
             
-            string sql = "SELECT * FROM Teachers";
+            string sql = "SELECT teacher_id, FirstName, LastName, IsSupervisor, " +
+                "room_number_id   FROM Teachers";
 
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader = command.ExecuteReader();
