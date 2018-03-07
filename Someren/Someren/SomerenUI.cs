@@ -15,7 +15,7 @@ namespace Someren
             //repo
             // linking the list to the DB connection in order to get data from it
             students = SomerenDB.DB_getStudents();
-
+            // hi there
             // Making a list and editing its format 
             //int aantal = students.Count();
             ListView studentsListView = new ListView();
