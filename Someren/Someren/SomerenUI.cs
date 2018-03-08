@@ -152,9 +152,9 @@ namespace Someren
             // storing data into the list
             foreach (SomerenModel.Report record in report)
             {
-                ListViewItem entryListItem = reportListView.Items.Add(report.getNumberOfDrinks().ToString());
-                entryListItem.SubItems.Add(report.getTurnover().ToString());
-                entryListItem.SubItems.Add(report.getNumberOfCustomers().ToString());
+                ListViewItem entryListItem = reportListView.Items.Add(record.getNumberOfDrinks().ToString());
+                entryListItem.SubItems.Add(record.getTurnover().ToString());
+                entryListItem.SubItems.Add(record.getNumberOfCustomers().ToString());
              
             }
 

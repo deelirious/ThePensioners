@@ -214,17 +214,18 @@ namespace Someren
         //class for Report (Sales, Turnover, Number of customers)
         public class Report
         {
-            int NumberOfDrinks;
+            int numberOfDrinks;
 
             //total[sales*sales price of those drinks]
             double turnover;
 
+            //custormers who bought at least one drink
             int numberOfCustomers;
 
             //set into the class Report
             public void SetNumberOfDrinks(int sales)
             {
-                NumberOfDrinks = sales;
+                numberOfDrinks = sales;
             }
 
             public void SetTurnover(double totalSales)
@@ -239,7 +240,7 @@ namespace Someren
             //get from the class Report
             public int getNumberOfDrinks()
             {
-                return NumberOfDrinks;
+                return numberOfDrinks;
             }
             public double getTurnover()
             {
