@@ -210,6 +210,46 @@ namespace Someren
                 return r;
             }
         }
+
+        //class for Report (Sales, Turnover, Number of customers)
+        public class Report
+        {
+            int NumberOfDrinks;
+
+            //total[]sales*sales price of those drinks
+            double turnover;
+
+            int numberOfCustomers;
+
+            //set into the class Report
+            public void SetNumberOfDrinks(int sales)
+            {
+                NumberOfDrinks = sales;
+            }
+
+            public void SetTurnover(double totalSales)
+            {
+                turnover = totalSales;
+            }
+            public void SetnumberOfCustomers(int numberCust)
+            {
+                numberOfCustomers = numberCust;
+            }
+
+            //get from the class Report
+            public int getNumberOfDrinks()
+            {
+                return NumberOfDrinks;
+            }
+            public double getTurnover()
+            {
+                return turnover;
+            }
+            public double getNumberOfCustomers()
+            {
+                return numberOfCustomers;
+            }
+        }
     }
 
     

@@ -12,8 +12,7 @@ namespace Someren
         public static Control showStudents()
         {
             List<SomerenModel.Student> students = new List<SomerenModel.Student>();
-            //repo
-            // linking the list to the DB connection in order to get data from it
+           // linking the list to the DB connection in order to get data from it
             students = SomerenDB.DB_getStudents();
 
             // Making a list and editing its format 

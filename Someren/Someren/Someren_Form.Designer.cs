@@ -159,20 +159,20 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 30);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 30);
             this.toolStripMenuItem2.Text = "Show Rooms";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(209, 30);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(210, 30);
             this.toolStripMenuItem3.Text = "Kamerindeling";
             // 
             // zoekKamersToolStripMenuItem
             // 
             this.zoekKamersToolStripMenuItem.Name = "zoekKamersToolStripMenuItem";
-            this.zoekKamersToolStripMenuItem.Size = new System.Drawing.Size(209, 30);
+            this.zoekKamersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.zoekKamersToolStripMenuItem.Text = "Zoek Kamers";
             // 
             // bardienstToolStripMenuItem
