@@ -52,16 +52,17 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overSomerenAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.limited_report = new System.Windows.Forms.Button();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.limited_report = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -157,7 +158,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 30);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(201, 30);
             this.toolStripMenuItem2.Text = "Show Rooms";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -236,8 +237,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.limited_report);
-            this.groupBox1.Controls.Add(this.monthCalendar1);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(18, 42);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -249,16 +248,36 @@
             this.groupBox1.Text = "TODO list for Someren";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // limited_report
+            // 
+            this.limited_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.limited_report.Location = new System.Drawing.Point(615, 362);
+            this.limited_report.Name = "limited_report";
+            this.limited_report.Size = new System.Drawing.Size(192, 71);
+            this.limited_report.TabIndex = 1;
+            this.limited_report.Text = "Choose dates and get the report";
+            this.limited_report.UseVisualStyleBackColor = true;
+            this.limited_report.Click += new System.EventHandler(this.limited_report_Click);
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(591, 31);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.limited_report);
+            this.panel1.Controls.Add(this.monthCalendar1);
             this.panel1.Location = new System.Drawing.Point(10, 29);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(567, 582);
+            this.panel1.Size = new System.Drawing.Size(852, 582);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -309,26 +328,6 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(17, 25);
             this.toolStripStatusLabel2.Text = " ";
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(617, 29);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.Visible = false;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
-            // 
-            // limited_report
-            // 
-            this.limited_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.limited_report.Location = new System.Drawing.Point(635, 314);
-            this.limited_report.Name = "limited_report";
-            this.limited_report.Size = new System.Drawing.Size(192, 71);
-            this.limited_report.TabIndex = 1;
-            this.limited_report.Text = "Choose dates and get the report";
-            this.limited_report.UseVisualStyleBackColor = true;
-            this.limited_report.Visible = false;
-            this.limited_report.Click += new System.EventHandler(this.limited_report_Click);
-            // 
             // Someren_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -348,6 +347,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

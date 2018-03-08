@@ -172,8 +172,10 @@ namespace Someren
             panel1.Controls.Clear();
             groupBox1.Text = "Report";
             panel1.Controls.Add(SomerenUI.showReport());
-            monthCalendar1.Visible = true;
-            limited_report.Visible = true;
+            panel1.Controls.Add(monthCalendar1);
+            panel1.Controls.Add(limited_report);
+            //monthCalendar1.Visible = true;
+            //limited_report.Visible = true;
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -187,6 +189,10 @@ namespace Someren
             DateTime start = monthCalendar1.SelectionStart;
             DateTime end = monthCalendar1.SelectionEnd;
             panel1.Controls.Clear();
+            panel1.Controls.Add(monthCalendar1);
+            panel1.Controls.Add(limited_report);
+            //monthCalendar1.Visible = true;
+            //limited_report.Visible = true;
             panel1.Controls.Add(SomerenUI.showLimitedReport(start, end));
         }
     }
