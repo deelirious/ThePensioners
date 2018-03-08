@@ -127,5 +127,38 @@ namespace Someren
 
             return teacherListView;
         }
+
+        //
+        public static Control showReport()
+        {
+            List<SomerenModel.Report> report = new List<SomerenModel.Report>();
+
+            // to get data from DataBase
+            report = SomerenDB.DB_getReport();
+
+            // Making a list and editing its format 
+            
+            ListView reportListView = new ListView();
+            reportListView.Height = 370;
+            reportListView.Width = 370;
+            reportListView.View = View.Details;
+            reportListView.FullRowSelect = true;
+
+            // adding colums to the list
+            reportListView.Columns.Add("Sales", -2, HorizontalAlignment.Left);
+            reportListView.Columns.Add("Turnover", -2, HorizontalAlignment.Left);
+            reportListView.Columns.Add("Number of customers", -2, HorizontalAlignment.Left);
+
+            // storing data into the list
+            foreach (SomerenModel.Report record in report)
+            {
+                ListViewItem entryListItem = reportListView.Items.Add(report.getNumberOfDrinks().ToString());
+                entryListItem.SubItems.Add(report.getTurnover().ToString());
+                entryListItem.SubItems.Add(report.getNumberOfCustomers().ToString());
+             
+            }
+
+            return reportListView;
+        }
     }
 }

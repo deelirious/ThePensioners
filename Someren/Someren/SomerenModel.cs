@@ -216,7 +216,7 @@ namespace Someren
         {
             int NumberOfDrinks;
 
-            //total[]sales*sales price of those drinks
+            //total[sales*sales price of those drinks]
             double turnover;
 
             int numberOfCustomers;
@@ -245,9 +245,24 @@ namespace Someren
             {
                 return turnover;
             }
-            public double getNumberOfCustomers()
+            public int getNumberOfCustomers()
             {
                 return numberOfCustomers;
+            }
+        }
+
+        public class ReportList
+        {
+            List<Report> reportList = new List<Report>();
+
+            public void addList(SomerenModel.Report report)
+            {
+                reportList.Add(report);
+            }
+
+            public List<Report> getList()
+            {
+                return reportList;
             }
         }
     }
