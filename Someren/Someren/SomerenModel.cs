@@ -217,7 +217,7 @@ namespace Someren
             int numberOfDrinks;
 
             //total[sales*sales price of those drinks]
-            double turnover;
+            decimal turnover;
 
             //custormers who bought at least one drink
             int numberOfCustomers;
@@ -228,7 +228,7 @@ namespace Someren
                 numberOfDrinks = sales;
             }
 
-            public void SetTurnover(double totalSales)
+            public void SetTurnover(decimal totalSales)
             {
                 turnover = totalSales;
             }
@@ -242,7 +242,7 @@ namespace Someren
             {
                 return numberOfDrinks;
             }
-            public double getTurnover()
+            public decimal getTurnover()
             {
                 return turnover;
             }

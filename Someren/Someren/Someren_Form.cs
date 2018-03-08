@@ -166,5 +166,28 @@ namespace Someren
 
             panel1.Controls.Add(SomerenUI.showTeachers()); // show table in panel1 
         }
+
+        private void omzetrapportageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            groupBox1.Text = "Report";
+            panel1.Controls.Add(SomerenUI.showReport());
+            monthCalendar1.Visible = true;
+            limited_report.Visible = true;
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            
+        }
+
+        private void limited_report_Click(object sender, EventArgs e)
+        {
+            
+            DateTime start = monthCalendar1.SelectionStart;
+            DateTime end = monthCalendar1.SelectionEnd;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(SomerenUI.showLimitedReport(start, end));
+        }
     }
 }

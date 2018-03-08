@@ -160,5 +160,38 @@ namespace Someren
 
             return reportListView;
         }
+
+        public static Control showLimitedReport(DateTime start, DateTime end)
+        {
+            List<SomerenModel.Report> report = new List<SomerenModel.Report>();
+
+            // to get data from DataBase
+            report = SomerenDB.DB_getLimitedReport(start, end);
+
+            // Making a list and editing its format 
+
+            ListView reportListView = new ListView();
+            reportListView.Height = 370;
+            reportListView.Width = 370;
+            reportListView.View = View.Details;
+            reportListView.FullRowSelect = true;
+
+            // adding colums to the list
+            reportListView.Columns.Add("Sales", -2, HorizontalAlignment.Left);
+            reportListView.Columns.Add("Turnover", -2, HorizontalAlignment.Left);
+            reportListView.Columns.Add("Number of customers", -2, HorizontalAlignment.Left);
+
+            // storing data into the list
+            foreach (SomerenModel.Report record in report)
+            {
+                ListViewItem entryListItem = reportListView.Items.Add(record.getNumberOfDrinks().ToString());
+                entryListItem.SubItems.Add(record.getTurnover().ToString());
+                entryListItem.SubItems.Add(record.getNumberOfCustomers().ToString());
+
+            }
+
+            return reportListView;
+        }
+        
     }
 }

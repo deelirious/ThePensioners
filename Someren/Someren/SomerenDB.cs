@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Globalization;
 
 namespace Someren
 {
@@ -146,7 +147,37 @@ namespace Someren
             {
                 SomerenModel.Report record = new SomerenModel.Report();
                 record.SetNumberOfDrinks((int)reader["NumberOfDrinks"]);
-                record.SetTurnover((double)reader["Turnover"]);
+                record.SetTurnover((decimal)reader["Turnover"]);
+                record.SetnumberOfCustomers((int)reader["NumberOfCustomers"]);
+                report.Add(record);
+            }
+            reader.Close();
+            connection.Close();
+
+            return report;
+        }
+        //if user wants to get date-limited report
+        public static List<SomerenModel.Report> DB_getLimitedReport(DateTime start, DateTime end)
+        {
+            SqlConnection connection = openConnectionDB();
+            List<SomerenModel.Report> report = new List<SomerenModel.Report>();
+
+            //editing dates in proper format yyyy-MM-dd 
+            string start_edit = start.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            string end_edit = end.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT sum(StudentBarService.drink_sold) as 'NumberOfDrinks', sum(BarService.price * StudentBarService.drink_sold) as 'Turnover', COUNT(distinct StudentBarService.student_id) as 'NumberOfCustomers' FROM StudentBarService INNER JOIN BarService ON StudentBarService.drink_id = BarService.drink_id WHERE  StudentBarService.date BETWEEN '"+ start_edit +"' AND '"+ end_edit + "'");
+
+            String sql = sb.ToString();
+            
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                SomerenModel.Report record = new SomerenModel.Report();
+                record.SetNumberOfDrinks((int)reader["NumberOfDrinks"]);
+                record.SetTurnover((decimal)reader["Turnover"]);
                 record.SetnumberOfCustomers((int)reader["NumberOfCustomers"]);
                 report.Add(record);
             }

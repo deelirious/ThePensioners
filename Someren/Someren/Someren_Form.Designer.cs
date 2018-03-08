@@ -41,8 +41,6 @@
             this.toonDocentenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoekKamersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bardienstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drankvoorraadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kassaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +58,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.limited_report = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -148,9 +148,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.zoekKamersToolStripMenuItem});
+            this.toolStripMenuItem2});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(80, 29);
             this.toolStripMenuItem1.Text = "Rooms";
@@ -162,18 +160,6 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(210, 30);
             this.toolStripMenuItem2.Text = "Show Rooms";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(210, 30);
-            this.toolStripMenuItem3.Text = "Kamerindeling";
-            // 
-            // zoekKamersToolStripMenuItem
-            // 
-            this.zoekKamersToolStripMenuItem.Name = "zoekKamersToolStripMenuItem";
-            this.zoekKamersToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
-            this.zoekKamersToolStripMenuItem.Text = "Zoek Kamers";
             // 
             // bardienstToolStripMenuItem
             // 
@@ -203,6 +189,7 @@
             this.omzetrapportageToolStripMenuItem.Name = "omzetrapportageToolStripMenuItem";
             this.omzetrapportageToolStripMenuItem.Size = new System.Drawing.Size(221, 30);
             this.omzetrapportageToolStripMenuItem.Text = "Reports";
+            this.omzetrapportageToolStripMenuItem.Click += new System.EventHandler(this.omzetrapportageToolStripMenuItem_Click);
             // 
             // activiteitenToolStripMenuItem
             // 
@@ -249,6 +236,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.limited_report);
+            this.groupBox1.Controls.Add(this.monthCalendar1);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(18, 42);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -269,7 +258,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 29);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(852, 582);
+            this.panel1.Size = new System.Drawing.Size(567, 582);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -320,6 +309,26 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(17, 25);
             this.toolStripStatusLabel2.Text = " ";
             // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(617, 29);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.Visible = false;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            // 
+            // limited_report
+            // 
+            this.limited_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.limited_report.Location = new System.Drawing.Point(635, 314);
+            this.limited_report.Name = "limited_report";
+            this.limited_report.Size = new System.Drawing.Size(192, 71);
+            this.limited_report.TabIndex = 1;
+            this.limited_report.Text = "Choose dates and get the report";
+            this.limited_report.UseVisualStyleBackColor = true;
+            this.limited_report.Visible = false;
+            this.limited_report.Click += new System.EventHandler(this.limited_report_Click);
+            // 
             // Someren_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -352,7 +361,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem bestandToolStripMenuItem;
@@ -371,7 +379,6 @@
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
         public System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripMenuItem zoekKamersToolStripMenuItem;
         public System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -379,6 +386,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem docentenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toonDocentenToolStripMenuItem;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Button limited_report;
     }
 }
 
