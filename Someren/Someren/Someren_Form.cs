@@ -201,19 +201,28 @@ namespace Someren
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // reading data from the textboxes
-            string name = drinkNameBox.Text;
-            decimal price = decimal.Parse(drinkPriceBox.Text);
-            int amount = int.Parse(drinkAmountBox.Text);
-
-            // passing data to the UI layer
-            SomerenUI.addBarServiceUI(name, price, amount);
-
-            // show a messagebox after clicking on add button
-            MessageBox.Show("You have successfully added a new drink!!\n" +
-                "Enter Refresh the list to see the changes", "",
+            if (drinkNameBox.Text == "" || drinkPriceBox.Text == "" || drinkAmountBox.Text == "")
+            {
+                // show a message if a user did not enter a value
+                MessageBox.Show("Please enter a value for (Name, Price, Amount) fields before clicking on Add", "",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // reading data from the textboxes
+                string name = drinkNameBox.Text;
+                decimal price = decimal.Parse(drinkPriceBox.Text);
+                int amount = int.Parse(drinkAmountBox.Text);
 
+                // passing data to the UI layer
+                SomerenUI.addBarServiceUI(name, price, amount);
+
+                // show a messagebox after clicking on add button
+                MessageBox.Show("You have successfully added a new drink!!\n" +
+                    "Enter Refresh the list to see the changes", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+               
             // clearing data from textboxes
             drinkAmountBox.Clear();
             drinkNameBox.Clear();
@@ -223,19 +232,29 @@ namespace Someren
 
         private void drinkUpdateBtn_Click(object sender, EventArgs e)
         {
-            // reading data from the textboxes
-            int id = int.Parse(boxId.Text);
-            string name = drinkNameBox.Text;
-            decimal price = decimal.Parse(drinkPriceBox.Text);
-            int amount = int.Parse(drinkAmountBox.Text);
 
-            // passing data to the UI layer
-            SomerenUI.uppdateBarServiceUI(id, name, price, amount);
+            if (boxId.Text=="" || drinkNameBox.Text=="" || drinkPriceBox.Text=="" || drinkAmountBox.Text=="")
+            {
+                // show a message if a user did not enter a value
+                MessageBox.Show("Please enter a value for all fields before clicking on Update", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // reading data from the textboxes
+                int id = int.Parse(boxId.Text);
+                string name = drinkNameBox.Text;
+                decimal price = decimal.Parse(drinkPriceBox.Text);
+                int amount = int.Parse(drinkAmountBox.Text);
 
-            // show a messagebox after clicking on update button
-            MessageBox.Show("You have successfully updated a drink!!\n" +
-                "Enter Refresh the list to see the changes", "",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // passing data to the UI layer
+                SomerenUI.uppdateBarServiceUI(id, name, price, amount);
+
+                // show a messagebox after clicking on update button
+                MessageBox.Show("You have successfully updated a drink!!\n" +
+                    "Enter Refresh the list to see the changes", "",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             // clearing data from textboxes
             drinkAmountBox.Clear();
@@ -246,17 +265,27 @@ namespace Someren
 
         private void drinkDeleteBtn_Click(object sender, EventArgs e)
         {
-            // reading data from the textboxes
-            int id = int.Parse(boxId.Text);
+            
+            if (boxId.Text == "")
+            {
+                // show a message if a user did not enter a value
+                MessageBox.Show("Please enter a value for ID before clicking on Delete", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // reading data from the textboxes
+                int id = int.Parse(boxId.Text);
 
-            // passing data to the UI layer
-            SomerenUI.deleteBarServiceUI(id);
+                // passing data to the UI layer
+                SomerenUI.deleteBarServiceUI(id);
 
-            // show a messagebox after clicking on update button
-            MessageBox.Show("You have successfully deleted a drink!!\n " +
-                "Enter Refresh the list to see the changes", "",
-              MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                // show a messagebox after clicking on update button
+                MessageBox.Show("You have successfully deleted a drink!!\n " +
+               "Enter Refresh the list to see the changes", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+     
             // clearing data from textboxes
             drinkAmountBox.Clear();
             drinkNameBox.Clear();
