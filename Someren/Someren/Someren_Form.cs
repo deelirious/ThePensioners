@@ -13,7 +13,7 @@ namespace Someren
 {
     public partial class Someren_Form : Form
     {
-       
+
         private static Someren_Form instance;
 
         public Someren_Form() { InitializeComponent(); }
@@ -43,7 +43,7 @@ namespace Someren
             // adding some useful tips to the buttons and labels of Bar Services when hovering over
             ToolTip ToolTip1 = new ToolTip();
             ToolTip1.SetToolTip(lblId, "Enter an ID only for updating and deletion !!not for add!!");
-            ToolTip1.SetToolTip(drinkNameLbl,"Please Start with an Uppercase letter");
+            ToolTip1.SetToolTip(drinkNameLbl, "Please Start with an Uppercase letter");
             ToolTip1.SetToolTip(drinkPriceLbl, "Type a price in a floating point like: '3.50'");
             ToolTip1.SetToolTip(drinkAmountLbl, "Type a whole number like: '2'");
             ToolTip1.SetToolTip(drinkAddBtn, "Enter a name, price and amount to add a drink !no ID is needed!");
@@ -54,7 +54,7 @@ namespace Someren
         private void showDashboard()
         {
             panel1.Controls.Clear();
-            
+
             groupBox1.Text = "TODO LIST";
             Label l = new Label();
             l.Height = 500;
@@ -73,7 +73,7 @@ namespace Someren
             {
                 Application.Exit();
             }
-           
+
         }
 
         private void toolStripMenuItem9_Click(object sender, EventArgs e)
@@ -83,15 +83,15 @@ namespace Someren
 
         private void overSomerenAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             panel1.Controls.Clear();
 
             groupBox1.Text = "TODO LIST";
             Label l = new Label();
             l.Height = 500;
             l.Text = "This application is developed for 1.3 Project Databases, programme IT, Inholland University of Applied Sciences Haarlem";
-            
+
             panel1.Controls.Add(l);
         }
 
@@ -102,7 +102,7 @@ namespace Someren
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             showDashboard();
         }
 
@@ -130,7 +130,7 @@ namespace Someren
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-           
+
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -214,7 +214,7 @@ namespace Someren
                 "Enter Refresh the list to see the changes", "",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-           // clearing data from textboxes
+            // clearing data from textboxes
             drinkAmountBox.Clear();
             drinkNameBox.Clear();
             drinkPriceBox.Clear();
@@ -230,7 +230,7 @@ namespace Someren
             int amount = int.Parse(drinkAmountBox.Text);
 
             // passing data to the UI layer
-            SomerenUI.uppdateBarServiceUI(id,name, price, amount);
+            SomerenUI.uppdateBarServiceUI(id, name, price, amount);
 
             // show a messagebox after clicking on update button
             MessageBox.Show("You have successfully updated a drink!!\n" +
@@ -266,7 +266,7 @@ namespace Someren
 
         private void drinkNameBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void drinkPriceBox_TextChanged(object sender, EventArgs e)
@@ -318,64 +318,70 @@ namespace Someren
 
         private void omzetrapportageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             panel1.Controls.Clear();
             groupBox1.Text = "The Revenue Report";
             panel1.Controls.Add(SomerenUI.showRevenueReport());
 
             //add the interface for the report (calendar and button)
-            
-            panel1.Controls.Add(picker_from);
-            panel1.Controls.Add(picker_to);
-            panel1.Controls.Add(From_text);
-            panel1.Controls.Add(To_text);
-            panel1.Controls.Add(limited_report);
+
+            panel1.Controls.Add(picker_from_form);
+            panel1.Controls.Add(picker_to_form);
+            panel1.Controls.Add(From_text_button);
+            panel1.Controls.Add(To_text_button);
+            panel1.Controls.Add(limited_report_button);
 
             //formating date into dd-mm-yyyy
-            picker_from.Format = DateTimePickerFormat.Custom;
-            picker_from.CustomFormat = "dd-MM-yyyy";
-            picker_to.Format = DateTimePickerFormat.Custom;
-            picker_to.CustomFormat = "dd-MM-yyyy";
-             
+            picker_from_form.Format = DateTimePickerFormat.Custom;
+            picker_from_form.CustomFormat = "dd-MM-yyyy";
+            picker_to_form.Format = DateTimePickerFormat.Custom;
+            picker_to_form.CustomFormat = "dd-MM-yyyy";
+
         }
-        
+
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            
+
         }
 
         private void limited_report_Click(object sender, EventArgs e)
         {
+
+        }
+
+
+        private void limited_report_button_Click(object sender, EventArgs e)
+        {
             //taking selected dates from the user
-            DateTime start = picker_from.Value;
-            DateTime end = picker_to.Value;
+            DateTime start = picker_from_form.Value;
+            DateTime end = picker_to_form.Value;
             //clear the panel for new data
             panel1.Controls.Clear();
 
             //add the interface for the limited report (buttons)
-            
-            panel1.Controls.Add(limited_report);
-            panel1.Controls.Add(From_text);
-            panel1.Controls.Add(To_text);
-            panel1.Controls.Add(picker_from);
-            panel1.Controls.Add(picker_to);
+
+            panel1.Controls.Add(limited_report_button);
+            panel1.Controls.Add(From_text_button);
+            panel1.Controls.Add(To_text_button);
+            panel1.Controls.Add(picker_from_form);
+            panel1.Controls.Add(picker_to_form);
 
             //formating date into dd-mm-yyyy
-            picker_from.Format = DateTimePickerFormat.Custom;
-            picker_from.CustomFormat = "dd-MM-yyyy";
-            picker_to.Format = DateTimePickerFormat.Custom;
-            picker_to.CustomFormat = "dd-MM-yyyy";
+            picker_from_form.Format = DateTimePickerFormat.Custom;
+            picker_from_form.CustomFormat = "dd-MM-yyyy";
+            picker_to_form.Format = DateTimePickerFormat.Custom;
+            picker_to_form.CustomFormat = "dd-MM-yyyy";
 
             //check if the dates are correct
             if (end <= DateTime.Today && start < end)
-            { panel1.Controls.Add(SomerenUI.showLimitedRevenueReport(start, end)); }
-            else {
-                MessageBox.Show ("Please, enter the valid dates ('from - to' and max. is 'today')","", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }            
+            {
+                panel1.Controls.Add(SomerenUI.showLimitedRevenueReport(start, end)); }
+            else
+            {
+                //saying to a user to try again
+                MessageBox.Show("Please, enter the valid dates ('from - to' and max. is 'today')", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
-
-
-
     }
 }

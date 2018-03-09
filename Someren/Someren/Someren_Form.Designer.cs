@@ -52,7 +52,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overSomerenAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.limited_report = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblId = new System.Windows.Forms.Label();
             this.boxId = new System.Windows.Forms.TextBox();
@@ -67,6 +66,7 @@
             this.drinkAmountLbl = new System.Windows.Forms.Label();
             this.drinkNameLbl = new System.Windows.Forms.Label();
             this.drinkPriceLbl = new System.Windows.Forms.Label();
+            this.limited_report = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -76,6 +76,11 @@
             this.To_text = new System.Windows.Forms.Label();
             this.picker_to = new System.Windows.Forms.DateTimePicker();
             this.picker_from = new System.Windows.Forms.DateTimePicker();
+            this.limited_report_button = new System.Windows.Forms.Button();
+            this.picker_to_form = new System.Windows.Forms.DateTimePicker();
+            this.picker_from_form = new System.Windows.Forms.DateTimePicker();
+            this.From_text_button = new System.Windows.Forms.Label();
+            this.To_text_button = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -259,22 +264,11 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(871, 631);
+            this.groupBox1.Size = new System.Drawing.Size(881, 631);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TODO list for Someren";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // limited_report
-            // 
-            this.limited_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.limited_report.Location = new System.Drawing.Point(599, 279);
-            this.limited_report.Name = "limited_report";
-            this.limited_report.Size = new System.Drawing.Size(200, 71);
-            this.limited_report.TabIndex = 1;
-            this.limited_report.Text = "Choose dates and get the report";
-            this.limited_report.UseVisualStyleBackColor = true;
-            this.limited_report.Click += new System.EventHandler(this.limited_report_Click);
             // 
             // panel1
             // 
@@ -282,6 +276,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.To_text_button);
+            this.panel1.Controls.Add(this.From_text_button);
+            this.panel1.Controls.Add(this.picker_from_form);
+            this.panel1.Controls.Add(this.picker_to_form);
+            this.panel1.Controls.Add(this.limited_report_button);
             this.panel1.Controls.Add(this.lblId);
             this.panel1.Controls.Add(this.boxId);
             this.panel1.Controls.Add(this.LblInstructions);
@@ -298,7 +297,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 29);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(853, 582);
+            this.panel1.Size = new System.Drawing.Size(863, 582);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -422,6 +421,17 @@
             this.drinkPriceLbl.Text = "Price";
             this.drinkPriceLbl.Click += new System.EventHandler(this.drinkPriceLbl_Click);
             // 
+            // limited_report
+            // 
+            this.limited_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.limited_report.Location = new System.Drawing.Point(599, 279);
+            this.limited_report.Name = "limited_report";
+            this.limited_report.Size = new System.Drawing.Size(200, 71);
+            this.limited_report.TabIndex = 1;
+            this.limited_report.Text = "Choose dates and get the report";
+            this.limited_report.UseVisualStyleBackColor = true;
+            this.limited_report.Click += new System.EventHandler(this.limited_report_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
@@ -503,6 +513,49 @@
             this.picker_from.Size = new System.Drawing.Size(200, 26);
             this.picker_from.TabIndex = 7;
             // 
+            // limited_report_button
+            // 
+            this.limited_report_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.limited_report_button.Location = new System.Drawing.Point(587, 437);
+            this.limited_report_button.Name = "limited_report_button";
+            this.limited_report_button.Size = new System.Drawing.Size(247, 79);
+            this.limited_report_button.TabIndex = 13;
+            this.limited_report_button.Text = "Choose dates and get the revenue report";
+            this.limited_report_button.UseVisualStyleBackColor = true;
+            this.limited_report_button.Click += new System.EventHandler(this.limited_report_button_Click);
+            // 
+            // picker_to_form
+            // 
+            this.picker_to_form.Location = new System.Drawing.Point(634, 204);
+            this.picker_to_form.Name = "picker_to_form";
+            this.picker_to_form.Size = new System.Drawing.Size(200, 26);
+            this.picker_to_form.TabIndex = 14;
+            // 
+            // picker_from_form
+            // 
+            this.picker_from_form.Location = new System.Drawing.Point(634, 95);
+            this.picker_from_form.Name = "picker_from_form";
+            this.picker_from_form.Size = new System.Drawing.Size(200, 26);
+            this.picker_from_form.TabIndex = 15;
+            // 
+            // From_text_button
+            // 
+            this.From_text_button.AutoSize = true;
+            this.From_text_button.Location = new System.Drawing.Point(583, 57);
+            this.From_text_button.Name = "From_text_button";
+            this.From_text_button.Size = new System.Drawing.Size(46, 20);
+            this.From_text_button.TabIndex = 16;
+            this.From_text_button.Text = "From";
+            // 
+            // To_text_button
+            // 
+            this.To_text_button.AutoSize = true;
+            this.To_text_button.Location = new System.Drawing.Point(583, 161);
+            this.To_text_button.Name = "To_text_button";
+            this.To_text_button.Size = new System.Drawing.Size(27, 20);
+            this.To_text_button.TabIndex = 17;
+            this.To_text_button.Text = "To";
+            // 
             // Someren_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -580,6 +633,11 @@
         private System.Windows.Forms.Label From_text;
         private System.Windows.Forms.DateTimePicker picker_from;
         private System.Windows.Forms.DateTimePicker picker_to;
+        private System.Windows.Forms.Button limited_report_button;
+        private System.Windows.Forms.DateTimePicker picker_from_form;
+        private System.Windows.Forms.DateTimePicker picker_to_form;
+        private System.Windows.Forms.Label To_text_button;
+        private System.Windows.Forms.Label From_text_button;
     }
 }
 

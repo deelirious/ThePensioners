@@ -276,7 +276,7 @@ namespace Someren
             }
         }
 
-    }
+   
 
         //class for Report (Sales, Turnover, Number of customers)
         public class Report
@@ -335,6 +335,5 @@ namespace Someren
         }
     }
 
-    
-
 }
+
