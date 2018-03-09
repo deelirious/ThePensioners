@@ -176,6 +176,8 @@ namespace Someren
                 }
                 entryListItem.SubItems.Add(StockState.ToString());
             }
+
+            // return a list view
             return barServiceListView;
         }
 
