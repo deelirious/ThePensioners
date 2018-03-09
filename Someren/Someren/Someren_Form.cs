@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -172,10 +173,10 @@ namespace Someren
             panel1.Controls.Clear();
             groupBox1.Text = "Report";
             panel1.Controls.Add(SomerenUI.showReport());
+            //add the interface for the limited report (calendar and button)
             panel1.Controls.Add(monthCalendar1);
             panel1.Controls.Add(limited_report);
-            //monthCalendar1.Visible = true;
-            //limited_report.Visible = true;
+
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -189,11 +190,23 @@ namespace Someren
             DateTime start = monthCalendar1.SelectionStart;
             DateTime end = monthCalendar1.SelectionEnd;
             panel1.Controls.Clear();
+            //add the interface for the limited report (buttons)
             panel1.Controls.Add(monthCalendar1);
             panel1.Controls.Add(limited_report);
-            //monthCalendar1.Visible = true;
-            //limited_report.Visible = true;
-            panel1.Controls.Add(SomerenUI.showLimitedReport(start, end));
+            panel1.Controls.Add(From_text);
+            panel1.Controls.Add(To_text);
+            panel1.Controls.Add(From_date);
+            panel1.Controls.Add(To_date);
+            panel1.Controls.Add(messageDate);
+            //show the limited report
+            From_date.Text = start.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            To_date.Text = end.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            if (end <= DateTime.Today && start < end)
+            { panel1.Controls.Add(SomerenUI.showLimitedReport(start, end)); }
+            else {
+                messageDate.Text = "Please, enter the valid dates ('from - to' and max. is 'today')";
+            }
+            
         }
     }
 }
