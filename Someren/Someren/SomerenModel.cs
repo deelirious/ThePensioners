@@ -62,15 +62,16 @@ namespace Someren
 
         public class StudentList
         {
-            List<SomerenModel.Student> sl = new List<SomerenModel.Student>();
+            List<Student> student = new List<Student>();
 
-            public void addList(SomerenModel.Student s) {
-                sl.Add(s);
+            public void addList(Student s)
+            {
+                student.Add(s);
             }
 
-            public List<SomerenModel.Student> getList()
+            public List<Student> getList()
             {
-                return sl;
+                return student;
             }
         }
 
@@ -195,23 +196,86 @@ namespace Someren
             }
         }
 
-       
+
         public class RoomsList
         {
-            List<SomerenModel.Rooms> r = new List<SomerenModel.Rooms>();
+            List<Rooms> room = new List<Rooms>();
 
-            public void addList(SomerenModel.Rooms s)
+            public void addList(Rooms r)
             {
-                r.Add(s);
+                room.Add(r);
             }
 
-            public List<SomerenModel.Rooms> getList()
+            public List<Rooms> getList()
             {
-                return r;
+                return room;
             }
         }
-    }
 
-    
+        public class BarService
+        {
+            int drinkId;
+            string drinkName;
+            decimal drinkPrice;
+            int stockAmount;
+
+            public void setDrinkId(int drink_id)
+            {
+                drinkId = drink_id;
+            }
+
+            public void setDrinkName(string drink_name)
+            {
+                drinkName = drink_name;
+            }
+
+            public void setDrinkPrice(decimal drink_price)
+            {
+                drinkPrice = drink_price;
+            }
+
+            public void setStockAmount(int stock_amount)
+            {
+                stockAmount = stock_amount;
+            }
+
+            public int getDrinkId()
+            {
+                return drinkId;
+            }
+
+            public string getDrinkName()
+            {
+                return drinkName;
+            }
+
+            public decimal getDrinkPrice()
+            {
+                return drinkPrice;
+            }
+
+            public int getStockAmount()
+            {
+                return stockAmount;
+            }
+
+        }
+
+        public class BarServiceList
+        {
+            List<BarServiceList> barServiceList = new List<BarServiceList>();
+
+            public void addList(BarServiceList barService)
+            {
+                barServiceList.Add(barService);
+            }
+            
+            public List<BarServiceList> getList()
+            {
+                return barServiceList;
+            }
+        }
+
+    }
 
 }

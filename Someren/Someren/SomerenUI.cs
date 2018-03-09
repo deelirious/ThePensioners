@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,13 @@ namespace Someren
     {
         public static Control showStudents()
         {
+            // make a list for retrieving data from it
             List<SomerenModel.Student> students = new List<SomerenModel.Student>();
-            //repo
+
             // linking the list to the DB connection in order to get data from it
             students = SomerenDB.DB_getStudents();
-            // hi there
+
             // Making a list and editing its format 
-            //int aantal = students.Count();
             ListView studentsListView = new ListView();
             studentsListView.Height = 370;
             studentsListView.Width = 370;
@@ -39,6 +40,7 @@ namespace Someren
                 entryListItem.SubItems.Add(student.getRoomNumber().ToString());
             }
 
+            // return a list view 
             return studentsListView;
         }
 
@@ -97,17 +99,20 @@ namespace Someren
             // we will add this list view to the panel later so the UI updates
             ListView teacherListView = new ListView();
 
+           
             teacherListView.Height = 370;
             teacherListView.Width = 370;
             teacherListView.View = View.Details;
             teacherListView.FullRowSelect = true;
 
+            // add columns to the list view
             teacherListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Supervisor", -2, HorizontalAlignment.Left);
             teacherListView.Columns.Add("Room Number", -2, HorizontalAlignment.Left);
 
+            // store data to the list view
             foreach (SomerenModel.Teacher teacher in teachers)
             {
                 ListViewItem entryListItem = teacherListView.Items.Add(teacher.getId().ToString());
@@ -122,11 +127,98 @@ namespace Someren
                 {
                     entryListItem.SubItems.Add("no");
                 }
-
                 entryListItem.SubItems.Add(teacher.getRoomNumber().ToString());
             }
 
+            // return a list view
             return teacherListView;
         }
+
+        public static Control showBarService()
+        {
+            // make a list for retrieving data from it
+            List<SomerenModel.BarService> barServices = new List<SomerenModel.BarService>();
+
+            // linking the list to the DB connection in order to get data from it
+            barServices = SomerenDB.DB_getBarServices();
+
+            // Making a list and editing its format 
+            ListView barServiceListView = new ListView();
+            barServiceListView.Height = 370;
+            barServiceListView.Width = 370;
+            barServiceListView.View = View.Details;
+            barServiceListView.FullRowSelect = true;
+
+            // add columns to the list view
+            barServiceListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
+            barServiceListView.Columns.Add("Drink Name", -2, HorizontalAlignment.Left);
+            barServiceListView.Columns.Add("Drink Price", -2, HorizontalAlignment.Left);
+            barServiceListView.Columns.Add("Amount (In Stock)", -2, HorizontalAlignment.Left);
+
+            // declare a string variable for adding new text to stock amount data
+            string StockState;
+
+            // store data to the list view
+            foreach (SomerenModel.BarService barService in barServices)
+            {
+                ListViewItem entryListItem = barServiceListView.Items.Add(barService.getDrinkId().ToString());
+                entryListItem.SubItems.Add(barService.getDrinkName().ToString());
+                entryListItem.SubItems.Add(barService.getDrinkPrice().ToString());
+
+                // adding new text to stock amount data depending on its value
+                if (barService.getStockAmount() < 10)
+                {
+                    StockState = barService.getStockAmount() + "   (Stock nearly depleted)";
+                }
+                else
+                {
+                    StockState = barService.getStockAmount() + "   (Stock sufficient)";
+                }
+                entryListItem.SubItems.Add(StockState.ToString());
+            }
+            return barServiceListView;
+        }
+
+        public static void addBarServiceUI (string name, decimal price, int amount)
+        {
+            // make a new variable of type SomerenModel.BarService in order to store data to it
+            SomerenModel.BarService newBarService = new SomerenModel.BarService();
+
+            // store data to the newBarSrvice variable
+            newBarService.setDrinkName(name);
+            newBarService.setDrinkPrice(price);
+            newBarService.setStockAmount(amount);
+            
+            // passing data to the DB layer
+            SomerenDB.DB_addBarService(newBarService);       
+        }
+
+        public static void uppdateBarServiceUI(int id, string name, decimal price, int amount)
+        {
+            // make a new variable of type SomerenModel.BarService in order to store data to it
+            SomerenModel.BarService newBarService = new SomerenModel.BarService();
+
+            // store data to the newBarSrvice variable
+            newBarService.setDrinkId(id);
+            newBarService.setDrinkName(name);
+            newBarService.setDrinkPrice(price);
+            newBarService.setStockAmount(amount);
+
+            // passing data to the DB layer
+            SomerenDB.DB_uppdateBarService(newBarService);
+        }
+
+        public static void deleteBarServiceUI(int id)
+        {
+            // make a new variable of type SomerenModel.BarService in order to store data to it
+            SomerenModel.BarService newBarService = new SomerenModel.BarService();
+
+            // store data to the newBarSrvice variable
+            newBarService.setDrinkId(id);
+
+            // passing data to the DB layer
+            SomerenDB.DB_deleteBarService(newBarService);
+        }
+
     }
 }
