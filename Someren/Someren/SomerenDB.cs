@@ -130,17 +130,18 @@ namespace Someren
             return teacherList;
         }
 
-        public static List<SomerenModel.Report> DB_getReport()
+        public static List<SomerenModel.Report> DB_getRevenueReport()
         {
             SqlConnection connection = openConnectionDB();
             List<SomerenModel.Report> report = new List<SomerenModel.Report>();
 
-
+            //put the query into string builder
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT sum(StudentBarService.drink_sold) as 'NumberOfDrinks', sum(BarService.price * StudentBarService.drink_sold) as 'Turnover', COUNT(distinct StudentBarService.student_id) as 'NumberOfCustomers' FROM StudentBarService INNER JOIN BarService ON StudentBarService.drink_id = BarService.drink_id");
 
             String sql = sb.ToString();
 
+            //start connection with DB
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -157,20 +158,22 @@ namespace Someren
             return report;
         }
         //if user wants to get date-limited report
-        public static List<SomerenModel.Report> DB_getLimitedReport(DateTime start, DateTime end)
+        public static List<SomerenModel.Report> DB_getLimitedRevenueReport(DateTime start, DateTime end)
         {
             SqlConnection connection = openConnectionDB();
             List<SomerenModel.Report> report = new List<SomerenModel.Report>();
 
-            //editing dates in proper format yyyy-MM-dd 
+            //editing dates in proper format yyyy-MM-dd for DB
             string start_edit = start.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
             string end_edit = end.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
+            //put the query into string builder
             StringBuilder sb = new StringBuilder();
             sb.Append("SELECT sum(StudentBarService.drink_sold) as 'NumberOfDrinks', sum(BarService.price * StudentBarService.drink_sold) as 'Turnover', COUNT(distinct StudentBarService.student_id) as 'NumberOfCustomers' FROM StudentBarService INNER JOIN BarService ON StudentBarService.drink_id = BarService.drink_id WHERE  StudentBarService.date BETWEEN '"+ start_edit +"' AND '"+ end_edit + "'");
 
             String sql = sb.ToString();
             
+            //start connection with DB
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())

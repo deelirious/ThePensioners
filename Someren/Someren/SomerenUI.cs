@@ -129,12 +129,12 @@ namespace Someren
         }
 
         //
-        public static Control showReport()
+        public static Control showRevenueReport()
         {
             List<SomerenModel.Report> report = new List<SomerenModel.Report>();
 
             // to get data from DataBase
-            report = SomerenDB.DB_getReport();
+            report = SomerenDB.DB_getRevenueReport();
 
             // Making a list and editing its format 
             
@@ -161,12 +161,12 @@ namespace Someren
             return reportListView;
         }
 
-        public static Control showLimitedReport(DateTime start, DateTime end)
+        public static Control showLimitedRevenueReport(DateTime start, DateTime end)
         {
             List<SomerenModel.Report> report = new List<SomerenModel.Report>();
 
             // to get data from DataBase
-            report = SomerenDB.DB_getLimitedReport(start, end);
+            report = SomerenDB.DB_getLimitedRevenueReport(start, end);
 
             // Making a list and editing its format 
 

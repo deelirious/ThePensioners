@@ -170,14 +170,27 @@ namespace Someren
 
         private void omzetrapportageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             panel1.Controls.Clear();
-            groupBox1.Text = "Report";
-            panel1.Controls.Add(SomerenUI.showReport());
-            //add the interface for the limited report (calendar and button)
-            panel1.Controls.Add(monthCalendar1);
+            groupBox1.Text = "The Revenue Report";
+            panel1.Controls.Add(SomerenUI.showRevenueReport());
+
+            //add the interface for the report (calendar and button)
+            
+            panel1.Controls.Add(picker_from);
+            panel1.Controls.Add(picker_to);
+            panel1.Controls.Add(From_text);
+            panel1.Controls.Add(To_text);
             panel1.Controls.Add(limited_report);
 
+            //formating date into dd-mm-yyyy
+            picker_from.Format = DateTimePickerFormat.Custom;
+            picker_from.CustomFormat = "dd-MM-yyyy";
+            picker_to.Format = DateTimePickerFormat.Custom;
+            picker_to.CustomFormat = "dd-MM-yyyy";
+
         }
+        
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -186,27 +199,32 @@ namespace Someren
 
         private void limited_report_Click(object sender, EventArgs e)
         {
-            
-            DateTime start = monthCalendar1.SelectionStart;
-            DateTime end = monthCalendar1.SelectionEnd;
+            //taking selected dates from the user
+            DateTime start = picker_from.Value;
+            DateTime end = picker_to.Value;
+            //clear the panel for new data
             panel1.Controls.Clear();
+
             //add the interface for the limited report (buttons)
-            panel1.Controls.Add(monthCalendar1);
+            
             panel1.Controls.Add(limited_report);
             panel1.Controls.Add(From_text);
             panel1.Controls.Add(To_text);
-            panel1.Controls.Add(From_date);
-            panel1.Controls.Add(To_date);
-            panel1.Controls.Add(messageDate);
-            //show the limited report
-            From_date.Text = start.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
-            To_date.Text = end.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            panel1.Controls.Add(picker_from);
+            panel1.Controls.Add(picker_to);
+
+            //formating date into dd-mm-yyyy
+            picker_from.Format = DateTimePickerFormat.Custom;
+            picker_from.CustomFormat = "dd-MM-yyyy";
+            picker_to.Format = DateTimePickerFormat.Custom;
+            picker_to.CustomFormat = "dd-MM-yyyy";
+
+            //check if the dates are correct
             if (end <= DateTime.Today && start < end)
-            { panel1.Controls.Add(SomerenUI.showLimitedReport(start, end)); }
+            { panel1.Controls.Add(SomerenUI.showLimitedRevenueReport(start, end)); }
             else {
-                messageDate.Text = "Please, enter the valid dates ('from - to' and max. is 'today')";
-            }
-            
+                MessageBox.Show ("Please, enter the valid dates ('from - to' and max. is 'today')","", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
     }
 }

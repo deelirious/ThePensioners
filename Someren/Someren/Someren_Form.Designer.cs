@@ -53,7 +53,6 @@
             this.overSomerenAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.limited_report = new System.Windows.Forms.Button();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -62,9 +61,8 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.From_text = new System.Windows.Forms.Label();
             this.To_text = new System.Windows.Forms.Label();
-            this.From_date = new System.Windows.Forms.Label();
-            this.To_date = new System.Windows.Forms.Label();
-            this.messageDate = new System.Windows.Forms.Label();
+            this.picker_to = new System.Windows.Forms.DateTimePicker();
+            this.picker_from = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -256,20 +254,13 @@
             // limited_report
             // 
             this.limited_report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.limited_report.Location = new System.Drawing.Point(609, 378);
+            this.limited_report.Location = new System.Drawing.Point(599, 279);
             this.limited_report.Name = "limited_report";
-            this.limited_report.Size = new System.Drawing.Size(192, 71);
+            this.limited_report.Size = new System.Drawing.Size(200, 71);
             this.limited_report.TabIndex = 1;
             this.limited_report.Text = "Choose dates and get the report";
             this.limited_report.UseVisualStyleBackColor = true;
             this.limited_report.Click += new System.EventHandler(this.limited_report_Click);
-            // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(591, 31);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // panel1
             // 
@@ -277,12 +268,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.messageDate);
-            this.panel1.Controls.Add(this.To_date);
-            this.panel1.Controls.Add(this.From_date);
+            this.panel1.Controls.Add(this.picker_from);
+            this.panel1.Controls.Add(this.picker_to);
             this.panel1.Controls.Add(this.To_text);
             this.panel1.Controls.Add(this.limited_report);
-            this.panel1.Controls.Add(this.monthCalendar1);
             this.panel1.Controls.Add(this.From_text);
             this.panel1.Location = new System.Drawing.Point(10, 29);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -341,7 +330,7 @@
             // From_text
             // 
             this.From_text.AutoSize = true;
-            this.From_text.Location = new System.Drawing.Point(587, 305);
+            this.From_text.Location = new System.Drawing.Point(595, 21);
             this.From_text.Name = "From_text";
             this.From_text.Size = new System.Drawing.Size(46, 20);
             this.From_text.TabIndex = 2;
@@ -350,37 +339,27 @@
             // To_text
             // 
             this.To_text.AutoSize = true;
-            this.To_text.Location = new System.Drawing.Point(791, 305);
+            this.To_text.Location = new System.Drawing.Point(595, 124);
             this.To_text.Name = "To_text";
             this.To_text.Size = new System.Drawing.Size(27, 20);
             this.To_text.TabIndex = 3;
             this.To_text.Text = "To";
             // 
-            // From_date
+            // picker_to
             // 
-            this.From_date.AutoSize = true;
-            this.From_date.Location = new System.Drawing.Point(587, 341);
-            this.From_date.Name = "From_date";
-            this.From_date.Size = new System.Drawing.Size(51, 20);
-            this.From_date.TabIndex = 4;
-            this.From_date.Text = "label3";
+            this.picker_to.CustomFormat = "dd-mm-yyyy";
+            this.picker_to.Location = new System.Drawing.Point(599, 159);
+            this.picker_to.Name = "picker_to";
+            this.picker_to.Size = new System.Drawing.Size(200, 26);
+            this.picker_to.TabIndex = 6;
             // 
-            // To_date
+            // picker_from
             // 
-            this.To_date.AutoSize = true;
-            this.To_date.Location = new System.Drawing.Point(767, 341);
-            this.To_date.Name = "To_date";
-            this.To_date.Size = new System.Drawing.Size(51, 20);
-            this.To_date.TabIndex = 5;
-            this.To_date.Text = "label4";
-            // 
-            // messageDate
-            // 
-            this.messageDate.Location = new System.Drawing.Point(609, 469);
-            this.messageDate.Name = "messageDate";
-            this.messageDate.Size = new System.Drawing.Size(192, 84);
-            this.messageDate.TabIndex = 6;
-            this.messageDate.Text = "label1";
+            this.picker_from.CustomFormat = "dd-MM-yyyy";
+            this.picker_from.Location = new System.Drawing.Point(599, 56);
+            this.picker_from.Name = "picker_from";
+            this.picker_from.Size = new System.Drawing.Size(200, 26);
+            this.picker_from.TabIndex = 7;
             // 
             // Someren_Form
             // 
@@ -441,13 +420,11 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem docentenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toonDocentenToolStripMenuItem;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button limited_report;
-        private System.Windows.Forms.Label To_date;
-        private System.Windows.Forms.Label From_date;
         private System.Windows.Forms.Label To_text;
         private System.Windows.Forms.Label From_text;
-        private System.Windows.Forms.Label messageDate;
+        private System.Windows.Forms.DateTimePicker picker_from;
+        private System.Windows.Forms.DateTimePicker picker_to;
     }
 }
 
