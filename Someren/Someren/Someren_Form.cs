@@ -188,7 +188,7 @@ namespace Someren
             picker_from.CustomFormat = "dd-MM-yyyy";
             picker_to.Format = DateTimePickerFormat.Custom;
             picker_to.CustomFormat = "dd-MM-yyyy";
-
+             
         }
         
 
