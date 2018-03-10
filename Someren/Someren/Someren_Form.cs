@@ -412,5 +412,11 @@ namespace Someren
                 MessageBox.Show("Please, enter the valid dates ('from - to' and max. is 'today')", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void kassaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            panel1.Controls.Add(checkoutButton);
+        }
     }
 }
