@@ -281,7 +281,28 @@ namespace Someren
         public class CashRegister
         {
             int studentId;
-            int drinkIds;
+            int drinkId;
+
+            public void setStudentId(int studentId)
+            {
+                this.studentId = studentId;
+            }
+
+            public void setDrinkId(int drinkId)
+            {
+                this.drinkId = drinkId;
+            }
+
+            public int getStudentId()
+            {
+                return studentId;
+            }
+
+            public int getDrinkId()
+            {
+                return drinkId;
+            }
+
         }
         
         public class CashRegisterList

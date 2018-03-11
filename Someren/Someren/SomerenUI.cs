@@ -277,12 +277,17 @@ namespace Someren
 
         private static void Handle_CheckoutButtonClicked(object sender, EventArgs eventArgs)
         {
+            // find the button
             Button checkoutButton = (Button)sender;
+
+            // find the other controls
             Control[] otherControls = (Control[])checkoutButton.Tag;
 
+            // find the two lists
             ListView studentsListView = (ListView)otherControls[0];
             ListView barServiceListView = (ListView)otherControls[1];
 
+            // we only support one student per order
             if (studentsListView.CheckedItems.Count != 1)
             {
                 MessageBox.Show("Please select exactly one student.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -292,6 +297,7 @@ namespace Someren
             // get the selected student
             int studentId = int.Parse(studentsListView.CheckedItems[0].Text);
 
+            // get the selected drinks
             List<int> drinkIds = new List<int>();
 
             foreach(ListViewItem checkedDrink in barServiceListView.CheckedItems)
@@ -301,13 +307,22 @@ namespace Someren
                 drinkIds.Add(drinkId);
             }
 
-            // invoke database query to store the stuff
-            SomerenModel.CashRegisterList list = new SomerenModel.CashRegisterList();
+
+            SomerenModel.CashRegisterList cashLines = new SomerenModel.CashRegisterList();
 
             // add each of the drinks to the list
+            foreach (int drinkId in drinkIds)
+            {
+                SomerenModel.CashRegister cashLine = new SomerenModel.CashRegister();
+                cashLine.setDrinkId(drinkId);
+                cashLine.setStudentId(studentId);
 
-            SomerenDB.DB_updateCashRegister(list);
+                cashLines.addList(cashLine);
+            }
 
+            // invoke database query to store the stuff
+            SomerenDB.DB_updateCashRegister(cashLines);
+            
             // reset the view
             foreach (ListViewItem student in studentsListView.Items)
             {

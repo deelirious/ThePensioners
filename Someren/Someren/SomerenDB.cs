@@ -302,7 +302,26 @@ namespace Someren
 
         internal static void DB_updateCashRegister(SomerenModel.CashRegisterList list)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = openConnectionDB();
+
+            string sqlQuery = @"INSERT INTO StudentBarService
+                        (drink_id, student_id, date, drink_sold)
+                        VALUES
+                        (@drink_id, @student_id, GETDATE(), 1)";
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+            foreach(SomerenModel.CashRegister record in list.getList())
+            {
+                command.Parameters.Clear();
+
+                command.Parameters.AddWithValue("@drink_id", record.getDrinkId());
+                command.Parameters.AddWithValue("@student_id", record.getStudentId());
+
+                command.ExecuteNonQuery();
+            }
+
+            connection.Close();
         }
     }
 }    
