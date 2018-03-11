@@ -304,6 +304,8 @@ namespace Someren
         {
             SqlConnection connection = openConnectionDB();
 
+            // we generate the date on the server
+            // we only support ordering one of the same drink at a time
             string sqlQuery = @"INSERT INTO StudentBarService
                         (drink_id, student_id, date, drink_sold)
                         VALUES
@@ -311,16 +313,21 @@ namespace Someren
 
             SqlCommand command = new SqlCommand(sqlQuery, connection);
 
+            // insert the drinks one by one
             foreach(SomerenModel.CashRegister record in list.getList())
             {
+                // clear from previous query
                 command.Parameters.Clear();
 
+                // add student and drink ids
                 command.Parameters.AddWithValue("@drink_id", record.getDrinkId());
                 command.Parameters.AddWithValue("@student_id", record.getStudentId());
 
+                // execute the query
                 command.ExecuteNonQuery();
             }
 
+            // make sure to close the connection
             connection.Close();
         }
     }
