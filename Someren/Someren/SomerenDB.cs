@@ -299,5 +299,10 @@ namespace Someren
 
             return report;
         }
+
+        internal static void DB_updateCashRegister(SomerenModel.CashRegisterList list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }    

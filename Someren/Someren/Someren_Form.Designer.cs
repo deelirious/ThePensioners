@@ -81,9 +81,6 @@
             this.To_text = new System.Windows.Forms.Label();
             this.picker_to = new System.Windows.Forms.DateTimePicker();
             this.picker_from = new System.Windows.Forms.DateTimePicker();
-            this.checkoutButton = new System.Windows.Forms.Button();
-            this.totalPriceTextLabel = new System.Windows.Forms.Label();
-            this.totalPriceLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -277,9 +274,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.totalPriceLabel);
-            this.panel1.Controls.Add(this.totalPriceTextLabel);
-            this.panel1.Controls.Add(this.checkoutButton);
             this.panel1.Controls.Add(this.To_text_button);
             this.panel1.Controls.Add(this.From_text_button);
             this.panel1.Controls.Add(this.picker_from_form);
@@ -327,7 +321,7 @@
             // picker_from_form
             // 
             this.picker_from_form.Location = new System.Drawing.Point(423, 62);
-            this.picker_from_form.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picker_from_form.Margin = new System.Windows.Forms.Padding(2);
             this.picker_from_form.Name = "picker_from_form";
             this.picker_from_form.Size = new System.Drawing.Size(135, 20);
             this.picker_from_form.TabIndex = 15;
@@ -335,7 +329,7 @@
             // picker_to_form
             // 
             this.picker_to_form.Location = new System.Drawing.Point(423, 133);
-            this.picker_to_form.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picker_to_form.Margin = new System.Windows.Forms.Padding(2);
             this.picker_to_form.Name = "picker_to_form";
             this.picker_to_form.Size = new System.Drawing.Size(135, 20);
             this.picker_to_form.TabIndex = 14;
@@ -344,7 +338,7 @@
             // 
             this.limited_report_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.limited_report_button.Location = new System.Drawing.Point(391, 284);
-            this.limited_report_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.limited_report_button.Margin = new System.Windows.Forms.Padding(2);
             this.limited_report_button.Name = "limited_report_button";
             this.limited_report_button.Size = new System.Drawing.Size(165, 51);
             this.limited_report_button.TabIndex = 13;
@@ -365,7 +359,7 @@
             // boxId
             // 
             this.boxId.Location = new System.Drawing.Point(439, 24);
-            this.boxId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.boxId.Margin = new System.Windows.Forms.Padding(2);
             this.boxId.Name = "boxId";
             this.boxId.Size = new System.Drawing.Size(119, 20);
             this.boxId.TabIndex = 11;
@@ -384,7 +378,7 @@
             // refreshBtn
             // 
             this.refreshBtn.Location = new System.Drawing.Point(439, 253);
-            this.refreshBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.refreshBtn.Margin = new System.Windows.Forms.Padding(2);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(117, 21);
             this.refreshBtn.TabIndex = 9;
@@ -395,7 +389,7 @@
             // drinkAddBtn
             // 
             this.drinkAddBtn.Location = new System.Drawing.Point(439, 153);
-            this.drinkAddBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drinkAddBtn.Margin = new System.Windows.Forms.Padding(2);
             this.drinkAddBtn.Name = "drinkAddBtn";
             this.drinkAddBtn.Size = new System.Drawing.Size(117, 21);
             this.drinkAddBtn.TabIndex = 0;
@@ -406,7 +400,7 @@
             // drinkPriceBox
             // 
             this.drinkPriceBox.Location = new System.Drawing.Point(439, 83);
-            this.drinkPriceBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drinkPriceBox.Margin = new System.Windows.Forms.Padding(2);
             this.drinkPriceBox.Name = "drinkPriceBox";
             this.drinkPriceBox.Size = new System.Drawing.Size(119, 20);
             this.drinkPriceBox.TabIndex = 3;
@@ -415,7 +409,7 @@
             // drinkDeleteBtn
             // 
             this.drinkDeleteBtn.Location = new System.Drawing.Point(439, 218);
-            this.drinkDeleteBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drinkDeleteBtn.Margin = new System.Windows.Forms.Padding(2);
             this.drinkDeleteBtn.Name = "drinkDeleteBtn";
             this.drinkDeleteBtn.Size = new System.Drawing.Size(117, 21);
             this.drinkDeleteBtn.TabIndex = 8;
@@ -426,7 +420,7 @@
             // drinkNameBox
             // 
             this.drinkNameBox.Location = new System.Drawing.Point(439, 53);
-            this.drinkNameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drinkNameBox.Margin = new System.Windows.Forms.Padding(2);
             this.drinkNameBox.Name = "drinkNameBox";
             this.drinkNameBox.Size = new System.Drawing.Size(119, 20);
             this.drinkNameBox.TabIndex = 1;
@@ -435,7 +429,7 @@
             // drinkUpdateBtn
             // 
             this.drinkUpdateBtn.Location = new System.Drawing.Point(439, 186);
-            this.drinkUpdateBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drinkUpdateBtn.Margin = new System.Windows.Forms.Padding(2);
             this.drinkUpdateBtn.Name = "drinkUpdateBtn";
             this.drinkUpdateBtn.Size = new System.Drawing.Size(117, 21);
             this.drinkUpdateBtn.TabIndex = 7;
@@ -446,7 +440,7 @@
             // drinkAmountBox
             // 
             this.drinkAmountBox.Location = new System.Drawing.Point(439, 114);
-            this.drinkAmountBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.drinkAmountBox.Margin = new System.Windows.Forms.Padding(2);
             this.drinkAmountBox.Name = "drinkAmountBox";
             this.drinkAmountBox.Size = new System.Drawing.Size(119, 20);
             this.drinkAmountBox.TabIndex = 2;
@@ -575,33 +569,6 @@
             this.picker_from.Size = new System.Drawing.Size(200, 20);
             this.picker_from.TabIndex = 7;
             // 
-            // checkoutButton
-            // 
-            this.checkoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkoutButton.Location = new System.Drawing.Point(392, 285);
-            this.checkoutButton.Name = "checkoutButton";
-            this.checkoutButton.Size = new System.Drawing.Size(163, 49);
-            this.checkoutButton.TabIndex = 18;
-            this.checkoutButton.Text = "Checkout";
-            this.checkoutButton.UseVisualStyleBackColor = true;
-            // 
-            // totalPriceTextLabel
-            // 
-            this.totalPriceTextLabel.AutoSize = true;
-            this.totalPriceTextLabel.Location = new System.Drawing.Point(391, 59);
-            this.totalPriceTextLabel.Name = "totalPriceTextLabel";
-            this.totalPriceTextLabel.Size = new System.Drawing.Size(60, 13);
-            this.totalPriceTextLabel.TabIndex = 19;
-            this.totalPriceTextLabel.Text = "Total price:";
-            // 
-            // totalPriceLabel
-            // 
-            this.totalPriceLabel.AutoSize = true;
-            this.totalPriceLabel.Location = new System.Drawing.Point(457, 59);
-            this.totalPriceLabel.Name = "totalPriceLabel";
-            this.totalPriceLabel.Size = new System.Drawing.Size(0, 13);
-            this.totalPriceLabel.TabIndex = 20;
-            // 
             // Someren_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -683,9 +650,6 @@
         private System.Windows.Forms.DateTimePicker picker_to_form;
         private System.Windows.Forms.Label To_text_button;
         private System.Windows.Forms.Label From_text_button;
-        private System.Windows.Forms.Button checkoutButton;
-        private System.Windows.Forms.Label totalPriceLabel;
-        private System.Windows.Forms.Label totalPriceTextLabel;
     }
 }
 

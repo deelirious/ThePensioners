@@ -264,14 +264,14 @@ namespace Someren
     
         public class BarServiceList
         {
-            List<BarServiceList> barServiceList = new List<BarServiceList>();
+            List<BarService> barServiceList = new List<BarService>();
 
-            public void addList(BarServiceList barService)
+            public void addList(BarService barService)
             {
                 barServiceList.Add(barService);
             }
             
-            public List<BarServiceList> getList()
+            public List<BarService> getList()
             {
                 return barServiceList;
             }
@@ -279,6 +279,12 @@ namespace Someren
 
         // class for cash register
         public class CashRegister
+        {
+            int studentId;
+            int drinkIds;
+        }
+        
+        public class CashRegisterList
         {
             List<CashRegister> cashRegisterList = new List<CashRegister>();
 

@@ -416,10 +416,6 @@ namespace Someren
         private void kassaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
-            panel1.Controls.Add(checkoutButton);
-            panel1.Controls.Add(totalPriceTextLabel);
-            panel1.Controls.Add(totalPriceLabel);
-
             panel1.Controls.AddRange(SomerenUI.showCashier());
         }
     }

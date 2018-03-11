@@ -183,8 +183,8 @@ namespace Someren
 
         public static Control[] showCashier()
         {
-            // array cause we want to add two listviews to the view
-            Control[] listviews = new Control[2];
+            // array cause we want to add two listviews, a label and a button to the view
+            Control[] controls = new Control[4];
 
             /***********************************
              **** Create Students list view ****
@@ -196,8 +196,10 @@ namespace Someren
             // make list half height
             studentsListView.Height /= 2;
 
+            studentsListView.CheckBoxes = true;
+
             // add to array of controls
-            listviews[0] = studentsListView;
+            controls[0] = studentsListView;
 
             /*********************************
              **** Create Drinks list view ****
@@ -215,9 +217,140 @@ namespace Someren
             barServiceListView.CheckBoxes = true;
 
             // add to array of controls
-            listviews[1] = barServiceListView;
+            controls[1] = barServiceListView;
 
-            return listviews.ToArray();
+            /****************************
+             **** Create Total label ****
+             ****************************/
+
+            Label totalLabel = new Label();
+
+            // move to the right of the lists
+            totalLabel.Left = studentsListView.Width + 10;
+
+            totalLabel.AutoSize = true;
+
+            totalLabel.Text = "Total price:";
+
+            // add to the controls
+            controls[2] = totalLabel;
+
+            /********************************
+             **** Create Checkout button ****
+             ********************************/
+
+            Button checkoutButton = new Button();
+
+            // move to the right of the lists
+            checkoutButton.Left = studentsListView.Width + 10;
+
+            checkoutButton.Height = 50;
+            checkoutButton.Width = 180;
+            checkoutButton.Font = new Font(checkoutButton.Font, FontStyle.Bold);
+
+            // move to the bottom of the panel
+            checkoutButton.Top = barServiceListView.Bottom - checkoutButton.Height;
+
+            checkoutButton.Text = "Checkout";
+
+            controls[3] = checkoutButton;
+
+            /*******************************
+             **** Set up event handlers ****
+             *******************************/
+
+            // store the other controls in the tag so we can access them in the
+            // event handlers later
+            studentsListView.Tag = controls;
+            barServiceListView.Tag = controls;
+            checkoutButton.Tag = controls;
+
+            // store the total amount in the label's tag
+            totalLabel.Tag = 0.0;
+
+            // when the event happens, call the registered function (event handler)
+            barServiceListView.ItemChecked += Handle_CashierDrinkChecked;
+            checkoutButton.Click += Handle_CheckoutButtonClicked;
+
+            return controls;
+        }
+
+        private static void Handle_CheckoutButtonClicked(object sender, EventArgs eventArgs)
+        {
+            Button checkoutButton = (Button)sender;
+            Control[] otherControls = (Control[])checkoutButton.Tag;
+
+            ListView studentsListView = (ListView)otherControls[0];
+            ListView barServiceListView = (ListView)otherControls[1];
+
+            if (studentsListView.CheckedItems.Count != 1)
+            {
+                MessageBox.Show("Please select exactly one student.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // get the selected student
+            int studentId = int.Parse(studentsListView.CheckedItems[0].Text);
+
+            List<int> drinkIds = new List<int>();
+
+            foreach(ListViewItem checkedDrink in barServiceListView.CheckedItems)
+            {
+                int drinkId = int.Parse(checkedDrink.Text);
+
+                drinkIds.Add(drinkId);
+            }
+
+            // invoke database query to store the stuff
+            SomerenModel.CashRegisterList list = new SomerenModel.CashRegisterList();
+
+            // add each of the drinks to the list
+
+            SomerenDB.DB_updateCashRegister(list);
+
+            // reset the view
+            foreach (ListViewItem student in studentsListView.Items)
+            {
+                student.Checked = false;
+            }
+
+            foreach (ListViewItem drink in barServiceListView.Items)
+            {
+                drink.Checked = false;
+            }
+        }
+
+        private static void Handle_CashierDrinkChecked(object sender, ItemCheckedEventArgs eventArgs)
+        {
+            // the sender is the student list view
+            ListView barServiceListView = (ListView)sender;
+
+            // the label is in the tag on the list view (index 2)
+            Control[] otherControls = (Control[])barServiceListView.Tag;
+            Label totalLabel = (Label)otherControls[2];
+
+            double totalAmount = (double)totalLabel.Tag;
+
+            ListViewItem item = eventArgs.Item;
+
+            // the amount is the text value for the 3rd column
+            double itemAmount = double.Parse(item.SubItems[2].Text);
+
+            if (item.Checked)
+            {
+                // we must add amount to total                
+                 totalAmount += itemAmount;
+            }
+            // the event is somehow also fired when items are added initially
+            // so we must make sure we don't go below 0
+            else if (totalAmount >= itemAmount)
+            {
+                // remove amount from total
+                totalAmount -= itemAmount;
+            }
+
+            totalLabel.Text = "Total amount: " + totalAmount.ToString("C");
+            totalLabel.Tag = totalAmount;
         }
 
         public static void addBarServiceUI (string name, decimal price, int amount)
