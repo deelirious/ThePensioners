@@ -416,6 +416,7 @@ namespace Someren
         private void kassaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
+            groupBox1.Text = "Cashier";
             panel1.Controls.AddRange(SomerenUI.showCashier());
         }
     }
