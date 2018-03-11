@@ -417,6 +417,10 @@ namespace Someren
         {
             panel1.Controls.Clear();
             panel1.Controls.Add(checkoutButton);
+            panel1.Controls.Add(totalPriceTextLabel);
+            panel1.Controls.Add(totalPriceLabel);
+
+            panel1.Controls.AddRange(SomerenUI.showCashier());
         }
     }
 }

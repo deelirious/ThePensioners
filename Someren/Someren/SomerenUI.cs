@@ -181,6 +181,45 @@ namespace Someren
             return barServiceListView;
         }
 
+        public static Control[] showCashier()
+        {
+            // array cause we want to add two listviews to the view
+            Control[] listviews = new Control[2];
+
+            /***********************************
+             **** Create Students list view ****
+             ***********************************/
+
+            // load the students using existing method
+            ListView studentsListView = (ListView)showStudents();
+
+            // make list half height
+            studentsListView.Height /= 2;
+
+            // add to array of controls
+            listviews[0] = studentsListView;
+
+            /*********************************
+             **** Create Drinks list view ****
+             *********************************/
+
+            ListView barServiceListView = (ListView)showBarService();
+
+            // make list half height
+            barServiceListView.Height /= 2;
+
+            // move list down so they don't overlap (move drinks down
+            // by the nr of pixels the other list takes up vertically)
+            barServiceListView.Top += studentsListView.Height;
+
+            barServiceListView.CheckBoxes = true;
+
+            // add to array of controls
+            listviews[1] = barServiceListView;
+
+            return listviews.ToArray();
+        }
+
         public static void addBarServiceUI (string name, decimal price, int amount)
         {
             // make a new variable of type SomerenModel.BarService in order to store data to it

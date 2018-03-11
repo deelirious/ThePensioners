@@ -261,6 +261,7 @@ namespace Someren
 
         }
 
+    
         public class BarServiceList
         {
             List<BarServiceList> barServiceList = new List<BarServiceList>();
@@ -276,7 +277,23 @@ namespace Someren
             }
         }
 
-   
+        // class for cash register
+        public class CashRegister
+        {
+            List<CashRegister> cashRegisterList = new List<CashRegister>();
+
+            public void addList(CashRegister cashRegister)
+            {
+                cashRegisterList.Add(cashRegister); 
+            }
+
+            public List<CashRegister> getList()
+            {
+                return cashRegisterList;
+            }
+        }
+
+
 
         //class for Report (Sales, Turnover, Number of customers)
         public class Report

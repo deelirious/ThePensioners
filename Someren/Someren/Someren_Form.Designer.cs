@@ -82,6 +82,8 @@
             this.picker_to = new System.Windows.Forms.DateTimePicker();
             this.picker_from = new System.Windows.Forms.DateTimePicker();
             this.checkoutButton = new System.Windows.Forms.Button();
+            this.totalPriceTextLabel = new System.Windows.Forms.Label();
+            this.totalPriceLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -275,6 +277,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.totalPriceLabel);
+            this.panel1.Controls.Add(this.totalPriceTextLabel);
             this.panel1.Controls.Add(this.checkoutButton);
             this.panel1.Controls.Add(this.To_text_button);
             this.panel1.Controls.Add(this.From_text_button);
@@ -581,6 +585,23 @@
             this.checkoutButton.Text = "Checkout";
             this.checkoutButton.UseVisualStyleBackColor = true;
             // 
+            // totalPriceTextLabel
+            // 
+            this.totalPriceTextLabel.AutoSize = true;
+            this.totalPriceTextLabel.Location = new System.Drawing.Point(391, 59);
+            this.totalPriceTextLabel.Name = "totalPriceTextLabel";
+            this.totalPriceTextLabel.Size = new System.Drawing.Size(60, 13);
+            this.totalPriceTextLabel.TabIndex = 19;
+            this.totalPriceTextLabel.Text = "Total price:";
+            // 
+            // totalPriceLabel
+            // 
+            this.totalPriceLabel.AutoSize = true;
+            this.totalPriceLabel.Location = new System.Drawing.Point(457, 59);
+            this.totalPriceLabel.Name = "totalPriceLabel";
+            this.totalPriceLabel.Size = new System.Drawing.Size(0, 13);
+            this.totalPriceLabel.TabIndex = 20;
+            // 
             // Someren_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -663,6 +684,8 @@
         private System.Windows.Forms.Label To_text_button;
         private System.Windows.Forms.Label From_text_button;
         private System.Windows.Forms.Button checkoutButton;
+        private System.Windows.Forms.Label totalPriceLabel;
+        private System.Windows.Forms.Label totalPriceTextLabel;
     }
 }
 
