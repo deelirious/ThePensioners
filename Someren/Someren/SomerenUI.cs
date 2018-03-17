@@ -69,7 +69,7 @@ namespace Someren
             {
                 ListViewItem entryListItem = roomsListView.Items.Add(room.getRoomNumber().ToString());
                 entryListItem.SubItems.Add(room.getRoomCapacity().ToString());
-                
+
                 if (room.getRoomType() == true)
                 {
                     entryListItem.SubItems.Add("Teachers Room");
@@ -99,7 +99,7 @@ namespace Someren
             // we will add this list view to the panel later so the UI updates
             ListView teacherListView = new ListView();
 
-           
+
             teacherListView.Height = 370;
             teacherListView.Width = 370;
             teacherListView.View = View.Details;
@@ -118,7 +118,7 @@ namespace Someren
                 ListViewItem entryListItem = teacherListView.Items.Add(teacher.getId().ToString());
                 entryListItem.SubItems.Add(teacher.getFirstName());
                 entryListItem.SubItems.Add(teacher.getLastName());
-               
+
                 if (teacher.getIsSupervisor() == true)
                 {
                     entryListItem.SubItems.Add("yes");
@@ -300,7 +300,7 @@ namespace Someren
             // get the selected drinks
             List<int> drinkIds = new List<int>();
 
-            foreach(ListViewItem checkedDrink in barServiceListView.CheckedItems)
+            foreach (ListViewItem checkedDrink in barServiceListView.CheckedItems)
             {
                 int drinkId = int.Parse(checkedDrink.Text);
 
@@ -322,7 +322,7 @@ namespace Someren
 
             // invoke database query to store the stuff
             SomerenDB.DB_updateCashRegister(cashLines);
-            
+
             // reset the view
             foreach (ListViewItem student in studentsListView.Items)
             {
@@ -354,7 +354,7 @@ namespace Someren
             if (item.Checked)
             {
                 // we must add amount to total                
-                 totalAmount += itemAmount;
+                totalAmount += itemAmount;
             }
             // the event is somehow also fired when items are added initially
             // so we must make sure we don't go below 0
@@ -368,7 +368,7 @@ namespace Someren
             totalLabel.Tag = totalAmount;
         }
 
-        public static void addBarServiceUI (string name, decimal price, int amount)
+        public static void addBarServiceUI(string name, decimal price, int amount)
         {
             // make a new variable of type SomerenModel.BarService in order to store data to it
             SomerenModel.BarService newBarService = new SomerenModel.BarService();
@@ -377,9 +377,9 @@ namespace Someren
             newBarService.setDrinkName(name);
             newBarService.setDrinkPrice(price);
             newBarService.setStockAmount(amount);
-            
+
             // passing data to the DB layer
-            SomerenDB.DB_addBarService(newBarService);       
+            SomerenDB.DB_addBarService(newBarService);
         }
 
         public static void uppdateBarServiceUI(int id, string name, decimal price, int amount)
@@ -419,7 +419,7 @@ namespace Someren
             report = SomerenDB.DB_getRevenueReport();
 
             // Making a list and editing its format 
-            
+
             ListView reportListView = new ListView();
             reportListView.Height = 370;
             reportListView.Width = 370;
@@ -437,7 +437,7 @@ namespace Someren
                 ListViewItem entryListItem = reportListView.Items.Add(record.getNumberOfDrinks().ToString());
                 entryListItem.SubItems.Add(record.getTurnover().ToString());
                 entryListItem.SubItems.Add(record.getNumberOfCustomers().ToString());
-             
+
             }
 
             return reportListView;
@@ -494,7 +494,7 @@ namespace Someren
             // adding colums to the list
             supervisorListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
             supervisorListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
-            
+
 
             // storing data into the list
             foreach (SomerenModel.Supervisor record in supervisors)
@@ -504,6 +504,18 @@ namespace Someren
             }
 
             return supervisorListView;
+        }
+
+        public static void RemoveSuper(string remove_supervisor)
+        {
+            SomerenDB.DB_removeSupervisor(remove_supervisor);
+            
+        }
+
+        public static void AddSuper(string add_supervisor)
+        {
+            SomerenDB.DB_AddSupervisor(add_supervisor);
+
         }
 
     }

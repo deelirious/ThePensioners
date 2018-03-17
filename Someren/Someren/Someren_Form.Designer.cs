@@ -81,6 +81,12 @@
             this.To_text = new System.Windows.Forms.Label();
             this.picker_to = new System.Windows.Forms.DateTimePicker();
             this.picker_from = new System.Windows.Forms.DateTimePicker();
+            this.Remove_super = new System.Windows.Forms.Button();
+            this.Remove_sup = new System.Windows.Forms.TextBox();
+            this.Remove_s = new System.Windows.Forms.Label();
+            this.Add_s = new System.Windows.Forms.Label();
+            this.Add_sup = new System.Windows.Forms.TextBox();
+            this.Add_super = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -278,6 +284,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.Add_super);
+            this.panel1.Controls.Add(this.Add_sup);
+            this.panel1.Controls.Add(this.Add_s);
+            this.panel1.Controls.Add(this.Remove_s);
+            this.panel1.Controls.Add(this.Remove_sup);
+            this.panel1.Controls.Add(this.Remove_super);
             this.panel1.Controls.Add(this.To_text_button);
             this.panel1.Controls.Add(this.From_text_button);
             this.panel1.Controls.Add(this.picker_from_form);
@@ -558,6 +570,56 @@
             this.picker_from.Size = new System.Drawing.Size(200, 26);
             this.picker_from.TabIndex = 7;
             // 
+            // Remove_super
+            // 
+            this.Remove_super.Location = new System.Drawing.Point(617, 160);
+            this.Remove_super.Name = "Remove_super";
+            this.Remove_super.Size = new System.Drawing.Size(176, 77);
+            this.Remove_super.TabIndex = 18;
+            this.Remove_super.Text = "Remove a supervisor";
+            this.Remove_super.UseVisualStyleBackColor = true;
+            this.Remove_super.Click += new System.EventHandler(this.Remove_super_Click);
+            // 
+            // Remove_sup
+            // 
+            this.Remove_sup.Location = new System.Drawing.Point(605, 103);
+            this.Remove_sup.Name = "Remove_sup";
+            this.Remove_sup.Size = new System.Drawing.Size(201, 26);
+            this.Remove_sup.TabIndex = 19;
+            // 
+            // Remove_s
+            // 
+            this.Remove_s.Location = new System.Drawing.Point(601, 24);
+            this.Remove_s.Name = "Remove_s";
+            this.Remove_s.Size = new System.Drawing.Size(205, 64);
+            this.Remove_s.TabIndex = 20;
+            this.Remove_s.Text = "Enter a last name of a supervisor if you want to remove him";
+            // 
+            // Add_s
+            // 
+            this.Add_s.Location = new System.Drawing.Point(601, 322);
+            this.Add_s.Name = "Add_s";
+            this.Add_s.Size = new System.Drawing.Size(205, 64);
+            this.Add_s.TabIndex = 21;
+            this.Add_s.Text = "Enter a last name of a teacher if you want to make him a supervisor";
+            // 
+            // Add_sup
+            // 
+            this.Add_sup.Location = new System.Drawing.Point(605, 405);
+            this.Add_sup.Name = "Add_sup";
+            this.Add_sup.Size = new System.Drawing.Size(201, 26);
+            this.Add_sup.TabIndex = 22;
+            // 
+            // Add_super
+            // 
+            this.Add_super.Location = new System.Drawing.Point(617, 466);
+            this.Add_super.Name = "Add_super";
+            this.Add_super.Size = new System.Drawing.Size(176, 77);
+            this.Add_super.TabIndex = 23;
+            this.Add_super.Text = "Make a supervisor";
+            this.Add_super.UseVisualStyleBackColor = true;
+            this.Add_super.Click += new System.EventHandler(this.Add_super_Click);
+            // 
             // Someren_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -640,6 +702,12 @@
         private System.Windows.Forms.DateTimePicker picker_to_form;
         private System.Windows.Forms.Label To_text_button;
         private System.Windows.Forms.Label From_text_button;
+        private System.Windows.Forms.Button Remove_super;
+        private System.Windows.Forms.Label Remove_s;
+        private System.Windows.Forms.TextBox Remove_sup;
+        private System.Windows.Forms.Button Add_super;
+        private System.Windows.Forms.TextBox Add_sup;
+        private System.Windows.Forms.Label Add_s;
     }
 }
 

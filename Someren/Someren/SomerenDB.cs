@@ -358,5 +358,51 @@ namespace Someren
 
             return supervisors;
         }
+
+        public static void DB_removeSupervisor(string remove_supervisor)
+        {
+            SqlConnection connection = openConnectionDB();
+           // List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
+
+            //put the query into string builder
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE Teachers SET IsSupervisor = '0'WHERE LastName like '" + remove_supervisor+"'");
+
+            String sql = sb.ToString();
+
+            //start connection with DB
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader = command.ExecuteReader();
+              while (reader.Read())
+              {
+                command.ExecuteNonQuery();
+            }
+              reader.Close();
+            
+            connection.Close();
+        }
+
+        public static void DB_AddSupervisor(string add_supervisor)
+        {
+            SqlConnection connection = openConnectionDB();
+            // List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
+
+            //put the query into string builder
+            StringBuilder sb = new StringBuilder();
+            sb.Append("UPDATE Teachers SET IsSupervisor = '1'WHERE LastName like '" + add_supervisor + "'");
+
+            String sql = sb.ToString();
+
+            //start connection with DB
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                command.ExecuteNonQuery();
+            }
+            reader.Close();
+
+            connection.Close();
+        }
     }
 }    

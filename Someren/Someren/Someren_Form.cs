@@ -424,7 +424,60 @@ namespace Someren
         {
             panel1.Controls.Clear();
             groupBox1.Text = "Supervisors";
+            
+            panel1.Controls.Add(Remove_super);
+            panel1.Controls.Add(Remove_sup);
+            panel1.Controls.Add(Remove_s);
+            panel1.Controls.Add(Add_super);
+            panel1.Controls.Add(Add_sup);
+            panel1.Controls.Add(Add_s);
             panel1.Controls.Add(SomerenUI.showListSupervisors());
+            
+        }
+
+        private void Remove_super_Click(object sender, EventArgs e)
+        {
+            if ((MessageBox.Show("Are you sure that you wish to remove this supervisor?", "Exit SomerenAdministration?",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+            MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+            {
+                string remove = Remove_sup.Text;
+                SomerenUI.RemoveSuper(remove);
+
+                panel1.Controls.Clear();
+                Remove_sup.Clear();
+                
+                groupBox1.Text = "Supervisors";
+                panel1.Controls.Add(Remove_super);
+                panel1.Controls.Add(Remove_sup);
+                panel1.Controls.Add(Remove_s);
+                panel1.Controls.Add(Add_super);
+                panel1.Controls.Add(Add_sup);
+                panel1.Controls.Add(Add_s);
+                panel1.Controls.Add(SomerenUI.showListSupervisors());
+                MessageBox.Show("The supervisor was successfully removed!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+
+        private void Add_super_Click(object sender, EventArgs e)
+        {
+            
+                string add = Add_sup.Text;
+                SomerenUI.AddSuper(add);
+
+                panel1.Controls.Clear();
+                Add_sup.Clear();
+
+                groupBox1.Text = "Supervisors";
+                panel1.Controls.Add(Remove_super);
+                panel1.Controls.Add(Remove_sup);
+                panel1.Controls.Add(Remove_s);
+                panel1.Controls.Add(Add_super);
+                panel1.Controls.Add(Add_sup);
+                panel1.Controls.Add(Add_s);
+                panel1.Controls.Add(SomerenUI.showListSupervisors());
+                
             
         }
     }
