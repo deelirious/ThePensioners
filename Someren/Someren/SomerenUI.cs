@@ -485,7 +485,7 @@ namespace Someren
             // Making a list and editing its format 
 
             ListView supervisorListView = new ListView();
-            supervisorListView.CheckBoxes = true;
+            
             supervisorListView.Height = 370;
             supervisorListView.Width = 370;
             supervisorListView.View = View.Details;
