@@ -474,6 +474,37 @@ namespace Someren
 
             return reportListView;
         }
-        
+
+        public static Control showListSupervisors()
+        {
+            List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
+
+            // to get data from DataBase
+            supervisors = SomerenDB.DB_getSupervisors();
+
+            // Making a list and editing its format 
+
+            ListView supervisorListView = new ListView();
+            supervisorListView.CheckBoxes = true;
+            supervisorListView.Height = 370;
+            supervisorListView.Width = 370;
+            supervisorListView.View = View.Details;
+            supervisorListView.FullRowSelect = true;
+
+            // adding colums to the list
+            supervisorListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
+            supervisorListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
+            
+
+            // storing data into the list
+            foreach (SomerenModel.Supervisor record in supervisors)
+            {
+                ListViewItem entryListItem = supervisorListView.Items.Add(record.getFirstName().ToString());
+                entryListItem.SubItems.Add(record.getLastName().ToString());
+            }
+
+            return supervisorListView;
+        }
+
     }
 }

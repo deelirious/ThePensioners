@@ -330,5 +330,33 @@ namespace Someren
             // make sure to close the connection
             connection.Close();
         }
+
+        public static List<SomerenModel.Supervisor> DB_getSupervisors()
+        {
+            SqlConnection connection = openConnectionDB();
+            List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
+
+            //put the query into string builder
+            StringBuilder sb = new StringBuilder();
+            sb.Append("select FirstName, LastName  from Teachers where IsSupervisor = '1'");
+
+            String sql = sb.ToString();
+
+            //start connection with DB
+            SqlCommand command = new SqlCommand(sql, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                SomerenModel.Supervisor record = new SomerenModel.Supervisor();
+                record.setFirstName((string)reader["FirstName"]);
+                record.setLastName((string)reader["LastName"]);
+               
+                supervisors.Add(record);
+            }
+            reader.Close();
+            connection.Close();
+
+            return supervisors;
+        }
     }
 }    

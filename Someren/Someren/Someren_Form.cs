@@ -419,5 +419,13 @@ namespace Someren
             groupBox1.Text = "Cashier";
             panel1.Controls.AddRange(SomerenUI.showCashier());
         }
+
+        private void begeleidersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            groupBox1.Text = "Supervisors";
+            panel1.Controls.Add(SomerenUI.showListSupervisors());
+            
+        }
     }
 }

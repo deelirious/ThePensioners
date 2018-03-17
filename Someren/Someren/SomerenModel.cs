@@ -377,6 +377,50 @@ namespace Someren
                 return reportList;
             }
         }
+
+        public class Supervisor
+        {
+            string FirstName;
+            string LastName;
+
+
+
+            //set into the class Supervisor
+            public void setFirstName(string f_name)
+            {
+                FirstName = f_name;
+            }
+
+            public void setLastName(string l_name)
+            {
+                LastName = l_name;
+            }
+
+            //get from the class Supervisor
+            public string getFirstName()
+            {
+                return FirstName;
+            }
+            public string getLastName()
+            {
+                return LastName;
+            }
+           }
+
+        public class SupervisorList
+        {
+            List<Supervisor> SupervisorsList = new List<Supervisor>();
+
+            public void addList(SomerenModel.Supervisor supervisor)
+            {
+                SupervisorsList.Add(supervisor);
+            }
+
+            public List<Supervisor> getList()
+            {
+                return SupervisorsList;
+            }
+        }
     }
 
 }
