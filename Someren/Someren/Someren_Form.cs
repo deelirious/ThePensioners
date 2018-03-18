@@ -635,7 +635,21 @@ namespace Someren
             panel1.Controls.Add(LblInstructions);
         }
 
-        private void activityIdBox_TextChanged(object sender, EventArgs e)
+        private void roosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            groupBox1.Text = "Timetable";
+
+            Control[] controls = SomerenUI.showTimetable();
+            panel1.Controls.AddRange(controls);
+
+            // The third control is the button.  We want to reload everything after
+            // saving so we just attach this menu item's click handler to the button
+            // as well
+            controls[3].Click += roosterToolStripMenuItem_Click;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -517,6 +517,195 @@ namespace Someren
             SomerenDB.DB_AddSupervisor(add_supervisor);
         }
 
+        public static Control[] showTimetable()
+        {
+            List<SomerenModel.TimetableActivity> timetable = SomerenDB.DB_getTimetable();
+
+            ListView activitiesListView = (ListView) showActivity();
+
+            // we must split the activities by the day of the week on which they occur
+            // we will have one list view per day
+            List<SomerenModel.TimetableActivity> mondayActivities = new List<SomerenModel.TimetableActivity>();
+            List<SomerenModel.TimetableActivity> tuesdayActivities = new List<SomerenModel.TimetableActivity>();
+            List<SomerenModel.TimetableActivity> wednesdayActivities = new List<SomerenModel.TimetableActivity>();
+            List<SomerenModel.TimetableActivity> thursdayActivities = new List<SomerenModel.TimetableActivity>();
+            List<SomerenModel.TimetableActivity> fridayActivities = new List<SomerenModel.TimetableActivity>();
+            
+            foreach (SomerenModel.TimetableActivity activity in timetable)
+            {
+                // use day of week because it's the simplest
+                switch(activity.getDate().DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        mondayActivities.Add(activity);
+                        break;
+                    case DayOfWeek.Tuesday:
+                        tuesdayActivities.Add(activity);
+                        break;
+                    case DayOfWeek.Wednesday:
+                        wednesdayActivities.Add(activity);
+                        break;
+                    case DayOfWeek.Thursday:
+                        thursdayActivities.Add(activity);
+                        break;
+                    case DayOfWeek.Friday:
+                        fridayActivities.Add(activity);
+                        break;
+                }
+            }
+
+            activitiesListView.Height = 85;
+            activitiesListView.Width = 370;
+            activitiesListView.FullRowSelect = true;
+
+            DateTimePicker datePicker = new DateTimePicker();
+            datePicker.Left = 375;
+            datePicker.Width = 150;
+            // restrict dates to the one week we care about
+            datePicker.Value = new DateTime(2017, 4, 11);
+            datePicker.MinDate = new DateTime(2017, 4, 10);
+            datePicker.MaxDate = new DateTime(2017, 4, 14);
+
+            ComboBox timePicker = new ComboBox();
+            timePicker.Left = 375;
+            timePicker.Width = 150;
+            timePicker.Top = 30;
+            timePicker.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // add the time slots we support
+            timePicker.Items.Add("09:00-11:00");
+            timePicker.Items.Add("11:00-13:00");
+            timePicker.Items.Add("13:00-15:00");
+            timePicker.Items.Add("15:00-17:00");
+
+            timePicker.SelectedIndex = 0;
+
+            Button saveButton = new Button();
+            saveButton.Text = "Save";
+            saveButton.Left = 375;
+            saveButton.Width = 150;
+            saveButton.Top = 60;
+
+            Control[] allControls = new Control[] {
+                activitiesListView,
+                datePicker,
+                timePicker,
+                saveButton,
+
+                createWeekDayListview(0, mondayActivities),
+                createWeekDayListview(1, tuesdayActivities),
+                createWeekDayListview(2, wednesdayActivities),
+                createWeekDayListview(3, thursdayActivities),
+                createWeekDayListview(4, fridayActivities),
+            };
+
+            // the button must read values from the controls so we just
+            // store them in the tag
+            saveButton.Tag = allControls;
+
+            // set event handler on save button
+            saveButton.Click += Click_TimetableSaveButton;
+
+            return allControls;
+        }
+
+        private static void Click_TimetableSaveButton(object sender, EventArgs e)
+        {
+            // find the controls again based on the tag
+            Button button = (Button)sender;
+            Control[] allControls = (Control[])button.Tag;
+            ListView activitiesListView = (ListView)allControls[0];
+            DateTimePicker datePicker = (DateTimePicker)allControls[1];
+            ComboBox timePicker = (ComboBox)allControls[2];
+
+            // make sure we have a selected activity
+            if (activitiesListView.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("Please select exactly one activity.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // find the new values from the controls
+            int activityId = int.Parse(activitiesListView.SelectedItems[0].Text);
+            DateTime date = datePicker.Value.Date;
+            int startTime = 9 + (timePicker.SelectedIndex * 2);
+            int endTime = startTime + 2;
+
+            // store in database
+            SomerenDB.DB_setTimeslotForActivity(activityId, date, startTime, endTime);
+        }
+
+        private static ListView createWeekDayListview(int position, List<SomerenModel.TimetableActivity> activities)
+        {
+            // we have a list view for each day of the week
+            ListView listView = new ListView();
+
+            int listWidth = 110;
+            int spacing = 5;
+
+            listView.Height = 280;
+            listView.Width = listWidth;
+
+            // move based on which day of the week the box is for
+            listView.Top = 90;
+            listView.Left = listWidth * position + spacing * position;
+
+            listView.Columns.Add("Activity");
+            listView.Columns.Add("Supervisors");
+
+            listView.View = View.Tile;
+
+            listView.ShowGroups = true;
+
+            // each time slot is a group (nice header)
+            listView.Groups.Add(new ListViewGroup("09:00-11:00"));
+            listView.Groups.Add(new ListViewGroup("11:00-13:00"));
+            listView.Groups.Add(new ListViewGroup("13:00-15:00"));
+            listView.Groups.Add(new ListViewGroup("15:00-17:00"));
+
+            // start at 9:00
+            int firstSlot = 9;
+            
+            for (int i = 0; i < 4; i++)
+            {
+                bool hasActivity = false;
+
+                // we need to find the activity for this time slot (which there
+                // should only be one of)
+                foreach (SomerenModel.TimetableActivity activity in activities) {
+
+                    // if the activity falls between this slot's begin and end time, add it
+                    // we do i*2 because each slot is 2hrs
+                    if (activity.getStartTime() == firstSlot + (i * 2))
+                    {
+                        string[] fields = new string[2];
+
+                        fields[0] = activity.getActivityDescription();
+                        fields[1] = string.Join(", ", activity.getSupervisors());
+
+                        ListViewItem listViewItem = new ListViewItem(fields);
+                        listView.Groups[i].Items.Add(listViewItem);
+                        listView.Items.Add(listViewItem);
+
+                        // don't add more than one activity per slot
+                        hasActivity = true;
+
+                        break;
+                    }
+                }
+
+                if (!hasActivity)
+                {
+                    // add empty item otherwise the group disappears
+                    ListViewItem listViewItem = new ListViewItem();
+                    listView.Groups[i].Items.Add(listViewItem);
+                    listView.Items.Add(listViewItem);
+                }
+            }
+
+            return listView;
+        }
+
         public static Control showActivity()
         {
             // make a list for retrieving data from it

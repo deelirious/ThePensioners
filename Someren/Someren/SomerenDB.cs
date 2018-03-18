@@ -409,13 +409,104 @@ namespace Someren
             connection.Close();
         }
 
+        public static void DB_setTimeslotForActivity(int activityId, DateTime date, int startTime, int endTime)
+        {
+            SqlConnection connection = openConnectionDB();
+
+            string query = @"UPDATE Timetable SET
+                                [Date] = @date,
+	                            StartTime = @startTime,
+	                            EndTime = @endTime
+                              WHERE activity_id = @activityId";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // make sure to use parameters to prevent sql injection
+            command.Parameters.AddWithValue("@date", date);
+            command.Parameters.AddWithValue("@startTime", startTime);
+            command.Parameters.AddWithValue("@endTime", endTime);
+            command.Parameters.AddWithValue("@activityId", activityId);
+            
+            command.ExecuteNonQuery();
+
+            // make sure to close the connection
+            connection.Close();
+        }
+
+        public static List<SomerenModel.TimetableActivity> DB_getTimetable()
+        {
+            SqlConnection connection = openConnectionDB();
+
+            List<SomerenModel.TimetableActivity> timetable = new List<SomerenModel.TimetableActivity>();
+
+            string sqlQuery = @"
+                SELECT Timetable.[activity_id]
+                      ,[Date]
+                      ,[StartTime]
+                      ,[EndTime]
+	                  ,[FirstName]
+	                  ,[LastName]
+	                  ,[activity_desc]
+                FROM Timetable
+                LEFT JOIN Teachers ON Timetable.teacher_id = Teachers.teacher_id
+                LEFT JOIN Activities ON Timetable.activity_id = Activities.activity_id";
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int activityId = (int)reader["activity_id"];
+                string activityDescription = (string)reader["activity_desc"];
+
+                string firstName = reader["FirstName"] == DBNull.Value ? null : (string)reader["FirstName"];
+                string lastName = reader["LastName"] == DBNull.Value ? null : (string)reader["LastName"];
+
+                DateTime date = (DateTime)reader["Date"];
+                int startTime = (int)reader["StartTime"];
+                int endTime = (int)reader["EndTime"];
+
+                // if we already found this activity before, we should only add
+                // the supervisor to the list. otherwise we should add the activity
+                // as well.
+                bool foundExisting = false;
+                foreach (SomerenModel.TimetableActivity otherSlot in timetable) {
+                    if (otherSlot.getActivityId() == activityId)
+                    {
+                        otherSlot.addSupervisor(firstName, lastName);
+                        foundExisting = true;
+                        break;
+                    }
+                }
+
+                if (foundExisting)
+                {
+                    // skip this record
+                    continue;
+                }
+
+                SomerenModel.TimetableActivity slot = new SomerenModel.TimetableActivity();
+                slot.setActivityId(activityId);
+                slot.setActivityDescription(activityDescription);
+                slot.setSlot(date, startTime, endTime);
+                slot.addSupervisor(firstName, lastName);
+
+                timetable.Add(slot);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return timetable;
+        }
+
         public static List<SomerenModel.Activities> DB_getActivities()
         {
             // make a sql connection
             SqlConnection connection = openConnectionDB();
             // make a list to store data from DB into it
             List<SomerenModel.Activities> activityList = new List<SomerenModel.Activities>();
-            // sql wuery
+            // sql query
             string sqlQuery = "SELECT activity_id, activity_desc, numberofStudents, numberofSupervisors " +
                 "FROM Activities";
 
