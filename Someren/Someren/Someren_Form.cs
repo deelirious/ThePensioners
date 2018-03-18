@@ -49,6 +49,9 @@ namespace Someren
             ToolTip1.SetToolTip(drinkAddBtn, "Enter a name, price and amount to add a drink !no ID is needed!");
             ToolTip1.SetToolTip(drinkUpdateBtn, "Enter the ID first then a name, price and amount to uppdate a drink");
             ToolTip1.SetToolTip(drinkDeleteBtn, "Enter just an ID to delete a drink");
+            ToolTip1.SetToolTip(activityAddBtn, "Enter a Description, number of Students and Supervisors to add an activity!no ID is needed!");
+            ToolTip1.SetToolTip(activityUpdateBtn, "Enter the ID first then a Description, number of Students and Supervisors to uppdate an activity");
+            ToolTip1.SetToolTip(activityDeleteBtn, "Enter just an ID to delete an activity");
         }
 
         private void showDashboard()
@@ -222,7 +225,7 @@ namespace Someren
                     "Enter Refresh the list to see the changes", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-               
+
             // clearing data from textboxes
             drinkAmountBox.Clear();
             drinkNameBox.Clear();
@@ -233,7 +236,7 @@ namespace Someren
         private void drinkUpdateBtn_Click(object sender, EventArgs e)
         {
 
-            if (boxId.Text=="" || drinkNameBox.Text=="" || drinkPriceBox.Text=="" || drinkAmountBox.Text=="")
+            if (boxId.Text == "" || drinkNameBox.Text == "" || drinkPriceBox.Text == "" || drinkAmountBox.Text == "")
             {
                 // show a message if a user did not enter a value
                 MessageBox.Show("Please enter a value for all fields before clicking on Update", "",
@@ -265,7 +268,7 @@ namespace Someren
 
         private void drinkDeleteBtn_Click(object sender, EventArgs e)
         {
-            
+
             if (boxId.Text == "")
             {
                 // show a message if a user did not enter a value
@@ -274,18 +277,23 @@ namespace Someren
             }
             else
             {
-                // reading data from the textboxes
-                int id = int.Parse(boxId.Text);
+                if (MessageBox.Show("Are you sure that you want to remove this drink?","Warning"
+                    ,MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)==DialogResult.Yes)
+                {
+                    // reading data from the textboxes
+                    int id = int.Parse(boxId.Text);
 
-                // passing data to the UI layer
-                SomerenUI.deleteBarServiceUI(id);
+                    // passing data to the UI layer
+                    SomerenUI.deleteBarServiceUI(id);
 
-                // show a messagebox after clicking on update button
-                MessageBox.Show("You have successfully deleted a drink!!\n " +
-               "Enter Refresh the list to see the changes", "",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // show a messagebox after clicking on update button
+                    MessageBox.Show("You have successfully deleted a drink!!\n " +
+                   "Enter Refresh the list to see the changes", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+               
             }
-     
+
             // clearing data from textboxes
             drinkAmountBox.Clear();
             drinkNameBox.Clear();
@@ -405,7 +413,8 @@ namespace Someren
             //check if the dates are correct
             if (end <= DateTime.Today && start < end)
             {
-                panel1.Controls.Add(SomerenUI.showLimitedRevenueReport(start, end)); }
+                panel1.Controls.Add(SomerenUI.showLimitedRevenueReport(start, end));
+            }
             else
             {
                 //saying to a user to try again
@@ -418,6 +427,158 @@ namespace Someren
             panel1.Controls.Clear();
             groupBox1.Text = "Cashier";
             panel1.Controls.AddRange(SomerenUI.showCashier());
+        }
+
+        private void activiteitenlijstToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            groupBox1.Text = "Activity List";
+            panel1.Controls.Add(SomerenUI.showActivity());
+
+            panel1.Controls.Add(activityAddBtn);
+            panel1.Controls.Add(activityDeleteBtn);
+            panel1.Controls.Add(activityUpdateBtn);
+            panel1.Controls.Add(activityRefreshBtn);
+            panel1.Controls.Add(activityIdBox);
+            panel1.Controls.Add(activityDescBox);
+            panel1.Controls.Add(activityStudBox);
+            panel1.Controls.Add(activitySuperBox);
+            panel1.Controls.Add(activityIdLbl);
+            panel1.Controls.Add(activityStuLbl);
+            panel1.Controls.Add(activityDescLbl);
+            panel1.Controls.Add(activitySupLbl);
+            panel1.Controls.Add(LblInstructions);
+
+        }
+
+        private void activityAddBtn_Click(object sender, EventArgs e)
+        {
+            SomerenModel.Activities one = new SomerenModel.Activities();
+            if (activityDescBox.Text == "" || activityStudBox.Text == "" || activitySuperBox.Text == "")
+            {
+                // show a message if a user did not enter a value
+                MessageBox.Show("Please enter a value for (Description, Number of Students, Number of Supervisors) " +
+                    "fields before clicking on Add", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // reading data from the textboxes
+                string desc = activityDescBox.Text;
+                int numberOfStudent = int.Parse(activityStudBox.Text);
+                int numberOfSupervisor = int.Parse(activitySuperBox.Text);
+
+                //if ()
+                //{
+
+                //}
+                // passing data to the UI layer
+                SomerenUI.addActivity(desc, numberOfStudent, numberOfSupervisor);
+
+               
+            }
+
+            // clearing data from textboxes
+            activityIdBox.Clear();
+            activityDescBox.Clear();
+            activityStudBox.Clear();
+            activitySuperBox.Clear();
+
+        }
+
+        private void activityUpdateBtn_Click(object sender, EventArgs e)
+        {
+            if (activityIdBox.Text == "" || activityDescBox.Text == ""
+                || activityStudBox.Text == "" || activitySuperBox.Text == "")
+            {
+                // show a message if a user did not enter a value
+                MessageBox.Show("Please enter a value for all fields before clicking on Update", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // reading data from the textboxes
+                int id = int.Parse(activityIdBox.Text);
+                string desc = activityDescBox.Text;
+                int numberOfStudent = int.Parse(activityStudBox.Text);
+                int numberOfSupervisor = int.Parse(activitySuperBox.Text);
+
+                // passing data to the UI layer
+                SomerenUI.uppdateActivity(id, desc, numberOfStudent, numberOfSupervisor);
+
+                // show a messagebox after clicking on update button
+                MessageBox.Show("You have successfully updated a activity!!\n" +
+                    "Enter Refresh the list to see the changes", "",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            // clearing data from textboxes
+            activityIdBox.Clear();
+            activityDescBox.Clear();
+            activityStudBox.Clear();
+            activitySuperBox.Clear();
+        }
+
+        private void activityDeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (activityIdBox.Text == "")
+            {
+                // show a message if a user did not enter a value
+                MessageBox.Show("Please enter a value for ID before clicking on Delete", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // reading data from the textboxes
+                int id = int.Parse(activityIdBox.Text);
+
+                if (MessageBox.Show("Are you sure that you wish to remove this activity?","Warning"
+                    ,MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)== DialogResult.Yes)
+                {
+                    // passing data to the UI layer
+                    SomerenUI.deleteActivity(id);
+
+                    // show a messagebox after clicking on update button
+                    MessageBox.Show("You have successfully deleted a activity!!\n " +
+                   "Enter Refresh the list to see the changes", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+               
+            }
+
+            // clearing data from textboxes
+            activityIdBox.Clear();
+            activityDescBox.Clear();
+            activityStudBox.Clear();
+            activitySuperBox.Clear();
+
+        }
+
+        private void activityRefreshBtn_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear(); // clear stuff on panel1
+            groupBox1.Text = "Activity List"; // set title of groupbox
+            panel1.Controls.Add(SomerenUI.showActivity()); // show table in panel1 
+
+            // add buttons and labels to the panel after refreshing the list
+            panel1.Controls.Add(activityAddBtn);
+            panel1.Controls.Add(activityDeleteBtn);
+            panel1.Controls.Add(activityUpdateBtn);
+            panel1.Controls.Add(activityRefreshBtn);
+            panel1.Controls.Add(activityIdBox);
+            panel1.Controls.Add(activityDescBox);
+            panel1.Controls.Add(activityStudBox);
+            panel1.Controls.Add(activitySuperBox);
+            panel1.Controls.Add(activityIdLbl);
+            panel1.Controls.Add(activityStuLbl);
+            panel1.Controls.Add(activityDescLbl);
+            panel1.Controls.Add(activitySupLbl);
+            panel1.Controls.Add(LblInstructions);
+        }
+
+        private void activityIdBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
