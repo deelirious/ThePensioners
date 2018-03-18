@@ -475,111 +475,47 @@ namespace Someren
             return reportListView;
         }
 
-        public static Control showActivity()
+        public static Control showListSupervisors()
         {
-            // make a list for retrieving data from it
-            List<SomerenModel.Activities> activities = new List<SomerenModel.Activities>();
+            List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
 
-            // linking the list to the DB connection in order to get data from it
-            activities = SomerenDB.DB_getActivities();
+            // to get data from DataBase
+            supervisors = SomerenDB.DB_getSupervisors();
 
             // Making a list and editing its format 
-            ListView activityListView = new ListView();
-            activityListView.Height = 370;
-            activityListView.Width = 370;
-            activityListView.View = View.Details;
-            activityListView.FullRowSelect = true;
 
-            // add columns to the list view
-            activityListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
-            activityListView.Columns.Add("Activity Description", -2, HorizontalAlignment.Left);
-            activityListView.Columns.Add("Number of Students", -2, HorizontalAlignment.Left);
-            activityListView.Columns.Add("Number of Supervisors", -2, HorizontalAlignment.Left);
+            ListView supervisorListView = new ListView();
+            
+            supervisorListView.Height = 370;
+            supervisorListView.Width = 370;
+            supervisorListView.View = View.Details;
+            supervisorListView.FullRowSelect = true;
+
+            // adding colums to the list
+            supervisorListView.Columns.Add("First Name", -2, HorizontalAlignment.Left);
+            supervisorListView.Columns.Add("Last Name", -2, HorizontalAlignment.Left);
 
 
-
-            // store data to the list view
-            foreach (SomerenModel.Activities activity in activities)
+            // storing data into the list
+            foreach (SomerenModel.Supervisor record in supervisors)
             {
-                ListViewItem entryListItem = activityListView.Items.Add(activity.getId().ToString());
-                entryListItem.SubItems.Add(activity.getActivity_desc().ToString());
-                entryListItem.SubItems.Add(activity.getNumOfStudents().ToString());
-                entryListItem.SubItems.Add(activity.getNumOfSupervisors().ToString());
+                ListViewItem entryListItem = supervisorListView.Items.Add(record.getFirstName().ToString());
+                entryListItem.SubItems.Add(record.getLastName().ToString());
             }
 
-            // return a list view
-            return activityListView;
-        }
-      
-        public static void addActivity(string desc, int numOfStudents, int numberOfSupervisor)
-        {
-            // make a list for retrieving data from it
-            List<SomerenModel.Activities> activities = new List<SomerenModel.Activities>();
-
-            // linking the list to the DB connection in order to get data from it
-            activities = SomerenDB.DB_getActivities();
-
-            // make a new variable of type SomerenModel.Activities in order to store data to it
-            SomerenModel.Activities newActivity = new SomerenModel.Activities();
-
-            // make a list to store avtivity description in it
-            List<string> activityDesc = new List<string>();
-
-            // add avtivity description to the activityDesc list 
-            foreach (SomerenModel.Activities activity in activities)
-            {
-                activityDesc.Add(activity.getActivity_desc().ToLower());
-            }
-
-            // make a validation to know if the data entered is diffrenet from DB data
-            if (activityDesc.Contains(desc.ToLower()))
-            {
-                // show a message if the entered data exists in the DB
-                MessageBox.Show("You can not add the same activity twice, please enter another activity name!", 
-                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                //store data to the newActivity variable
-                newActivity.setActivity_desc(desc);
-                newActivity.setNumOfStudents(numOfStudents);
-                newActivity.setNumOfSupervisors(numberOfSupervisor);
-                // passing data to the DB layer
-                SomerenDB.DB_addActivity(newActivity);
-
-                // show a messagebox after a successfull addition
-                MessageBox.Show("You have successfully added a new activity!!\n" +
-                    "Enter Refresh the list to see the changes", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-         
+            return supervisorListView;
         }
 
-        public static void uppdateActivity(int id, string desc, int numOfStudents, int numberOfSupervisor)
+        public static void RemoveSuper(string remove_supervisor)
         {
-            // make a new variable of type SomerenModel.Activities in order to store data to it
-            SomerenModel.Activities newActivity = new SomerenModel.Activities();
-
-            // store data to the newActivity variable
-            newActivity.setId(id);
-            newActivity.setActivity_desc(desc);
-            newActivity.setNumOfStudents(numOfStudents);
-            newActivity.setNumOfSupervisors(numberOfSupervisor);
-
-            // passing data to the DB layer
-            SomerenDB.DB_uppdateActivity(newActivity);
+            SomerenDB.DB_removeSupervisor(remove_supervisor);
+            
         }
 
-        public static void deleteActivity(int id)
+        public static void AddSuper(string add_supervisor)
         {
-            // make a new variable of type SomerenModel.Activities in order to store data to it
-            SomerenModel.Activities newActivity = new SomerenModel.Activities();
+            SomerenDB.DB_AddSupervisor(add_supervisor);
 
-            // store data to the newActivity variable
-            newActivity.setId(id);
-
-            // passing data to the DB layer
-            SomerenDB.DB_deleteActivity(newActivity);
         }
 
     }

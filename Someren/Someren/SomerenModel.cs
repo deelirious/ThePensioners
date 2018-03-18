@@ -8,7 +8,6 @@ namespace Someren
 {
     class SomerenModel
     {
-        // class for Student
         public class Student
         {
             int id;
@@ -213,7 +212,6 @@ namespace Someren
             }
         }
 
-        // class for BarService
         public class BarService
         {
             int drinkId;
@@ -263,7 +261,7 @@ namespace Someren
 
         }
 
-
+    
         public class BarServiceList
         {
             List<BarService> barServiceList = new List<BarService>();
@@ -272,7 +270,7 @@ namespace Someren
             {
                 barServiceList.Add(barService);
             }
-
+            
             public List<BarService> getList()
             {
                 return barServiceList;
@@ -287,7 +285,7 @@ namespace Someren
 
             public void setStudentId(int studentId)
             {
-                this.studentId = studentId; // when the two names are similiar we put this.
+                this.studentId = studentId;
             }
 
             public void setDrinkId(int drinkId)
@@ -306,14 +304,14 @@ namespace Someren
             }
 
         }
-
+        
         public class CashRegisterList
         {
             List<CashRegister> cashRegisterList = new List<CashRegister>();
 
             public void addList(CashRegister cashRegister)
             {
-                cashRegisterList.Add(cashRegister);
+                cashRegisterList.Add(cashRegister); 
             }
 
             public List<CashRegister> getList()
@@ -380,74 +378,49 @@ namespace Someren
             }
         }
 
-        // class for activities
-        public class Activities
+        public class Supervisor
         {
-            public int id;
-            public string activity_desc;
-            public int numOfStudents;
-            public int numOfSupervisors;
+            string FirstName;
+            string LastName;
 
 
 
-            public void setId(int activityId)
+            //set into the class Supervisor
+            public void setFirstName(string f_name)
             {
-                id = activityId;
+                FirstName = f_name;
             }
 
-            public void setActivity_desc(string activityDesc)
+            public void setLastName(string l_name)
             {
-                activity_desc = activityDesc;
+                LastName = l_name;
             }
 
-            public void setNumOfStudents(int numOfstudent)
+            //get from the class Supervisor
+            public string getFirstName()
             {
-                numOfStudents = numOfstudent;
+                return FirstName;
             }
-
-            public void setNumOfSupervisors(int numOfSupervisor)
+            public string getLastName()
             {
-                numOfSupervisors = numOfSupervisor;
+                return LastName;
             }
+           }
 
-            public int getId()
-            {
-                return id;
-            }
-
-            public string getActivity_desc()
-            {
-                return activity_desc;
-            }
-
-            public int getNumOfStudents()
-            {
-                return numOfStudents;
-            }
-
-            public int getNumOfSupervisors()
-            {
-                return numOfSupervisors;
-            }
-
-        }
-
-        public class ActivitiesList
+        public class SupervisorList
         {
-            List<Activities> activitiesList = new List<Activities>();
+            List<Supervisor> SupervisorsList = new List<Supervisor>();
 
-            public void addList(Activities activity)
+            public void addList(SomerenModel.Supervisor supervisor)
             {
-                activitiesList.Add(activity);
+                SupervisorsList.Add(supervisor);
             }
 
-            public List<Activities> getList()
+            public List<Supervisor> getList()
             {
-                return activitiesList;
+                return SupervisorsList;
             }
         }
-
-
     }
 
 }
