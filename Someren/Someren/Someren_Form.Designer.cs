@@ -53,12 +53,24 @@
             this.overSomerenAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.activityRefreshBtn = new System.Windows.Forms.Button();
+            this.activityDeleteBtn = new System.Windows.Forms.Button();
+            this.activityUpdateBtn = new System.Windows.Forms.Button();
+            this.activityAddBtn = new System.Windows.Forms.Button();
+            this.activityStuLbl = new System.Windows.Forms.Label();
             this.To_text_button = new System.Windows.Forms.Label();
+            this.activitySuperBox = new System.Windows.Forms.TextBox();
             this.From_text_button = new System.Windows.Forms.Label();
+            this.activitySupLbl = new System.Windows.Forms.Label();
             this.picker_from_form = new System.Windows.Forms.DateTimePicker();
+            this.activityIdBox = new System.Windows.Forms.TextBox();
+            this.activityDescLbl = new System.Windows.Forms.Label();
             this.picker_to_form = new System.Windows.Forms.DateTimePicker();
+            this.activityStudBox = new System.Windows.Forms.TextBox();
             this.limited_report_button = new System.Windows.Forms.Button();
+            this.activityIdLbl = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
+            this.activityDescBox = new System.Windows.Forms.TextBox();
             this.boxId = new System.Windows.Forms.TextBox();
             this.LblInstructions = new System.Windows.Forms.Label();
             this.refreshBtn = new System.Windows.Forms.Button();
@@ -236,6 +248,7 @@
             this.activiteitenlijstToolStripMenuItem.Name = "activiteitenlijstToolStripMenuItem";
             this.activiteitenlijstToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
             this.activiteitenlijstToolStripMenuItem.Text = "Activity List";
+            this.activiteitenlijstToolStripMenuItem.Click += new System.EventHandler(this.activiteitenlijstToolStripMenuItem_Click);
             // 
             // begeleidersToolStripMenuItem
             // 
@@ -290,12 +303,24 @@
             this.panel1.Controls.Add(this.Remove_s);
             this.panel1.Controls.Add(this.Remove_sup);
             this.panel1.Controls.Add(this.Remove_super);
+            this.panel1.Controls.Add(this.activityRefreshBtn);
+            this.panel1.Controls.Add(this.activityDeleteBtn);
+            this.panel1.Controls.Add(this.activityUpdateBtn);
+            this.panel1.Controls.Add(this.activityAddBtn);
+            this.panel1.Controls.Add(this.activityStuLbl);
             this.panel1.Controls.Add(this.To_text_button);
+            this.panel1.Controls.Add(this.activitySuperBox);
             this.panel1.Controls.Add(this.From_text_button);
+            this.panel1.Controls.Add(this.activitySupLbl);
             this.panel1.Controls.Add(this.picker_from_form);
+            this.panel1.Controls.Add(this.activityIdBox);
+            this.panel1.Controls.Add(this.activityDescLbl);
             this.panel1.Controls.Add(this.picker_to_form);
+            this.panel1.Controls.Add(this.activityStudBox);
             this.panel1.Controls.Add(this.limited_report_button);
+            this.panel1.Controls.Add(this.activityIdLbl);
             this.panel1.Controls.Add(this.lblId);
+            this.panel1.Controls.Add(this.activityDescBox);
             this.panel1.Controls.Add(this.boxId);
             this.panel1.Controls.Add(this.LblInstructions);
             this.panel1.Controls.Add(this.refreshBtn);
@@ -315,6 +340,55 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // activityRefreshBtn
+            // 
+            this.activityRefreshBtn.Location = new System.Drawing.Point(634, 447);
+            this.activityRefreshBtn.Name = "activityRefreshBtn";
+            this.activityRefreshBtn.Size = new System.Drawing.Size(201, 35);
+            this.activityRefreshBtn.TabIndex = 29;
+            this.activityRefreshBtn.Text = "Refresh the list";
+            this.activityRefreshBtn.UseVisualStyleBackColor = true;
+            this.activityRefreshBtn.Click += new System.EventHandler(this.activityRefreshBtn_Click);
+            // 
+            // activityDeleteBtn
+            // 
+            this.activityDeleteBtn.Location = new System.Drawing.Point(634, 398);
+            this.activityDeleteBtn.Name = "activityDeleteBtn";
+            this.activityDeleteBtn.Size = new System.Drawing.Size(201, 35);
+            this.activityDeleteBtn.TabIndex = 28;
+            this.activityDeleteBtn.Text = "Delete";
+            this.activityDeleteBtn.UseVisualStyleBackColor = true;
+            this.activityDeleteBtn.Click += new System.EventHandler(this.activityDeleteBtn_Click);
+            // 
+            // activityUpdateBtn
+            // 
+            this.activityUpdateBtn.Location = new System.Drawing.Point(634, 349);
+            this.activityUpdateBtn.Name = "activityUpdateBtn";
+            this.activityUpdateBtn.Size = new System.Drawing.Size(201, 35);
+            this.activityUpdateBtn.TabIndex = 27;
+            this.activityUpdateBtn.Text = "Update";
+            this.activityUpdateBtn.UseVisualStyleBackColor = true;
+            this.activityUpdateBtn.Click += new System.EventHandler(this.activityUpdateBtn_Click);
+            // 
+            // activityAddBtn
+            // 
+            this.activityAddBtn.Location = new System.Drawing.Point(634, 300);
+            this.activityAddBtn.Name = "activityAddBtn";
+            this.activityAddBtn.Size = new System.Drawing.Size(201, 35);
+            this.activityAddBtn.TabIndex = 26;
+            this.activityAddBtn.Text = "Add";
+            this.activityAddBtn.UseVisualStyleBackColor = true;
+            this.activityAddBtn.Click += new System.EventHandler(this.activityAddBtn_Click);
+            // 
+            // activityStuLbl
+            // 
+            this.activityStuLbl.AutoSize = true;
+            this.activityStuLbl.Location = new System.Drawing.Point(630, 143);
+            this.activityStuLbl.Name = "activityStuLbl";
+            this.activityStuLbl.Size = new System.Drawing.Size(149, 20);
+            this.activityStuLbl.TabIndex = 25;
+            this.activityStuLbl.Text = "Number of students";
+            // 
             // To_text_button
             // 
             this.To_text_button.AutoSize = true;
@@ -323,6 +397,13 @@
             this.To_text_button.Size = new System.Drawing.Size(27, 20);
             this.To_text_button.TabIndex = 17;
             this.To_text_button.Text = "To";
+            // 
+            // activitySuperBox
+            // 
+            this.activitySuperBox.Location = new System.Drawing.Point(634, 226);
+            this.activitySuperBox.Name = "activitySuperBox";
+            this.activitySuperBox.Size = new System.Drawing.Size(201, 26);
+            this.activitySuperBox.TabIndex = 19;
             // 
             // From_text_button
             // 
@@ -333,6 +414,15 @@
             this.From_text_button.TabIndex = 16;
             this.From_text_button.Text = "From";
             // 
+            // activitySupLbl
+            // 
+            this.activitySupLbl.AutoSize = true;
+            this.activitySupLbl.Location = new System.Drawing.Point(630, 201);
+            this.activitySupLbl.Name = "activitySupLbl";
+            this.activitySupLbl.Size = new System.Drawing.Size(167, 20);
+            this.activitySupLbl.TabIndex = 24;
+            this.activitySupLbl.Text = "Number of supervisors";
+            // 
             // picker_from_form
             // 
             this.picker_from_form.Location = new System.Drawing.Point(634, 95);
@@ -340,12 +430,36 @@
             this.picker_from_form.Size = new System.Drawing.Size(200, 26);
             this.picker_from_form.TabIndex = 15;
             // 
+            // activityIdBox
+            // 
+            this.activityIdBox.Location = new System.Drawing.Point(634, 45);
+            this.activityIdBox.Name = "activityIdBox";
+            this.activityIdBox.Size = new System.Drawing.Size(201, 26);
+            this.activityIdBox.TabIndex = 18;
+            this.activityIdBox.TextChanged += new System.EventHandler(this.activityIdBox_TextChanged);
+            // 
+            // activityDescLbl
+            // 
+            this.activityDescLbl.AutoSize = true;
+            this.activityDescLbl.Location = new System.Drawing.Point(630, 82);
+            this.activityDescLbl.Name = "activityDescLbl";
+            this.activityDescLbl.Size = new System.Drawing.Size(89, 20);
+            this.activityDescLbl.TabIndex = 23;
+            this.activityDescLbl.Text = "Description";
+            // 
             // picker_to_form
             // 
             this.picker_to_form.Location = new System.Drawing.Point(634, 205);
             this.picker_to_form.Name = "picker_to_form";
             this.picker_to_form.Size = new System.Drawing.Size(200, 26);
             this.picker_to_form.TabIndex = 14;
+            // 
+            // activityStudBox
+            // 
+            this.activityStudBox.Location = new System.Drawing.Point(634, 168);
+            this.activityStudBox.Name = "activityStudBox";
+            this.activityStudBox.Size = new System.Drawing.Size(201, 26);
+            this.activityStudBox.TabIndex = 20;
             // 
             // limited_report_button
             // 
@@ -358,6 +472,15 @@
             this.limited_report_button.UseVisualStyleBackColor = true;
             this.limited_report_button.Click += new System.EventHandler(this.limited_report_button_Click);
             // 
+            // activityIdLbl
+            // 
+            this.activityIdLbl.AutoSize = true;
+            this.activityIdLbl.Location = new System.Drawing.Point(630, 20);
+            this.activityIdLbl.Name = "activityIdLbl";
+            this.activityIdLbl.Size = new System.Drawing.Size(26, 20);
+            this.activityIdLbl.TabIndex = 22;
+            this.activityIdLbl.Text = "ID";
+            // 
             // lblId
             // 
             this.lblId.AutoSize = true;
@@ -366,6 +489,13 @@
             this.lblId.Size = new System.Drawing.Size(26, 20);
             this.lblId.TabIndex = 12;
             this.lblId.Text = "ID";
+            // 
+            // activityDescBox
+            // 
+            this.activityDescBox.Location = new System.Drawing.Point(634, 107);
+            this.activityDescBox.Name = "activityDescBox";
+            this.activityDescBox.Size = new System.Drawing.Size(201, 26);
+            this.activityDescBox.TabIndex = 21;
             // 
             // boxId
             // 
@@ -708,6 +838,18 @@
         private System.Windows.Forms.Button Add_super;
         private System.Windows.Forms.TextBox Add_sup;
         private System.Windows.Forms.Label Add_s;
+        private System.Windows.Forms.Button activityRefreshBtn;
+        private System.Windows.Forms.Button activityDeleteBtn;
+        private System.Windows.Forms.Button activityUpdateBtn;
+        private System.Windows.Forms.Button activityAddBtn;
+        private System.Windows.Forms.Label activityStuLbl;
+        private System.Windows.Forms.Label activitySupLbl;
+        private System.Windows.Forms.Label activityDescLbl;
+        private System.Windows.Forms.Label activityIdLbl;
+        private System.Windows.Forms.TextBox activityDescBox;
+        private System.Windows.Forms.TextBox activityStudBox;
+        private System.Windows.Forms.TextBox activitySuperBox;
+        private System.Windows.Forms.TextBox activityIdBox;
     }
 }
 

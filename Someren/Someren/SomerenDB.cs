@@ -56,7 +56,7 @@ namespace Someren
 
             // string builder to write query
             StringBuilder sb = new StringBuilder();
-            
+
             // the sql query
             sb.Append("SELECT student_id, FirstName,LastName ,room_number_id  FROM Students");
 
@@ -279,10 +279,14 @@ namespace Someren
 
             //put the query into string builder
             StringBuilder sb = new StringBuilder();
-            sb.Append("SELECT sum(StudentBarService.drink_sold) as 'NumberOfDrinks', sum(BarService.price * StudentBarService.drink_sold) as 'Turnover', COUNT(distinct StudentBarService.student_id) as 'NumberOfCustomers' FROM StudentBarService INNER JOIN BarService ON StudentBarService.drink_id = BarService.drink_id WHERE  StudentBarService.date BETWEEN '"+ start_edit +"' AND '"+ end_edit + "'");
+            sb.Append("SELECT sum(StudentBarService.drink_sold) as 'NumberOfDrinks', " +
+                "sum(BarService.price * StudentBarService.drink_sold) as 'Turnover', " +
+                "COUNT(distinct StudentBarService.student_id) as 'NumberOfCustomers' " +
+                "FROM StudentBarService INNER JOIN BarService ON StudentBarService.drink_id = BarService.drink_id " +
+                "WHERE  StudentBarService.date BETWEEN '" + start_edit + "' AND '" + end_edit + "'");
 
             String sql = sb.ToString();
-            
+
             //start connection with DB
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader = command.ExecuteReader();
@@ -314,7 +318,7 @@ namespace Someren
             SqlCommand command = new SqlCommand(sqlQuery, connection);
 
             // insert the drinks one by one
-            foreach(SomerenModel.CashRegister record in list.getList())
+            foreach (SomerenModel.CashRegister record in list.getList())
             {
                 // clear from previous query
                 command.Parameters.Clear();
@@ -404,5 +408,104 @@ namespace Someren
 
             connection.Close();
         }
+
+        public static List<SomerenModel.Activities> DB_getActivities()
+        {
+            // make a sql connection
+            SqlConnection connection = openConnectionDB();
+            // make a list to store data from DB into it
+            List<SomerenModel.Activities> activityList = new List<SomerenModel.Activities>();
+            // sql wuery
+            string sqlQuery = "SELECT activity_id, activity_desc, numberofStudents, numberofSupervisors " +
+                "FROM Activities";
+
+            // execute the sql query
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            // read data from DB
+            while (reader.Read())
+            {
+                SomerenModel.Activities activities = new SomerenModel.Activities();
+
+                activities.setId((int)reader["activity_id"]);
+                activities.setActivity_desc((string)reader["activity_desc"]);
+                activities.setNumOfStudents((int)reader["numberofStudents"]);
+                activities.setNumOfSupervisors((int)reader["numberofSupervisors"]);
+                activityList.Add(activities);
+            }
+            // close all connections
+            reader.Close();
+            connection.Close();
+
+
+            return activityList;
+        }
+
+        public static void DB_addActivity(SomerenModel.Activities newActivity)
+        {
+            // make a sql connection 
+            SqlConnection connection = openConnectionDB();
+
+            // the sql query for inserting new data to the DB
+            string sqlQuery = "INSERT INTO Activities(activity_desc, numberofStudents, numberofSupervisors) VALUES(@activity_desc, @numberofStudents, @numberofSupervisors)";
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+            // execute queries
+            command.Parameters.AddWithValue("@activity_desc", newActivity.getActivity_desc());
+            command.Parameters.AddWithValue("@numberofStudents", newActivity.getNumOfStudents());
+            command.Parameters.AddWithValue("@numberofSupervisors", newActivity.getNumOfSupervisors());
+            command.ExecuteNonQuery();
+
+            // close the connection
+            connection.Close();
+        }
+
+        public static void DB_uppdateActivity(SomerenModel.Activities newActivity)
+        {
+            // make a sql connection 
+            SqlConnection connection = openConnectionDB();
+
+            // the sql query for updating data of the DB
+            string sqlQuery = "UPDATE Activities SET activity_desc = @activity_desc, " +
+                "numberofStudents = @numberofStudents, numberofSupervisors= @numberofSupervisors " +
+                "WHERE activity_id = @activity_id ";
+
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+            // execute queries
+            command.Parameters.AddWithValue("@activity_id", newActivity.getId());
+            command.Parameters.AddWithValue("@activity_desc", newActivity.getActivity_desc());
+            command.Parameters.AddWithValue("@numberofStudents", newActivity.getNumOfStudents());
+            command.Parameters.AddWithValue("@numberofSupervisors", newActivity.getNumOfSupervisors());
+            command.ExecuteNonQuery();
+
+            // close the connection
+            connection.Close();
+        }
+
+        public static void DB_deleteActivity(SomerenModel.Activities newActivity)
+        {
+            // make a sql connection 
+            SqlConnection connection = openConnectionDB();
+
+            // the sql query for deleting data from DB
+            string sqlQuery = "DELETE FROM Activities WHERE activity_id = @activity_id";
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+            // execute queries
+            command.Parameters.AddWithValue("@activity_id", newActivity.getId());
+            command.ExecuteNonQuery();
+
+            // close the connection
+            connection.Close();
+
+        }
+
+
+
+
+
     }
-}    
+}

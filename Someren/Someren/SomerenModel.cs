@@ -8,6 +8,7 @@ namespace Someren
 {
     class SomerenModel
     {
+        // class for Student
         public class Student
         {
             int id;
@@ -212,6 +213,7 @@ namespace Someren
             }
         }
 
+        // class for BarService
         public class BarService
         {
             int drinkId;
@@ -261,7 +263,7 @@ namespace Someren
 
         }
 
-    
+
         public class BarServiceList
         {
             List<BarService> barServiceList = new List<BarService>();
@@ -270,7 +272,7 @@ namespace Someren
             {
                 barServiceList.Add(barService);
             }
-            
+
             public List<BarService> getList()
             {
                 return barServiceList;
@@ -285,7 +287,7 @@ namespace Someren
 
             public void setStudentId(int studentId)
             {
-                this.studentId = studentId;
+                this.studentId = studentId; // when the two names are similiar we put this.
             }
 
             public void setDrinkId(int drinkId)
@@ -304,14 +306,14 @@ namespace Someren
             }
 
         }
-        
+
         public class CashRegisterList
         {
             List<CashRegister> cashRegisterList = new List<CashRegister>();
 
             public void addList(CashRegister cashRegister)
             {
-                cashRegisterList.Add(cashRegister); 
+                cashRegisterList.Add(cashRegister);
             }
 
             public List<CashRegister> getList()
@@ -421,6 +423,74 @@ namespace Someren
                 return SupervisorsList;
             }
         }
+        // class for activities
+        public class Activities
+        {
+            public int id;
+            public string activity_desc;
+            public int numOfStudents;
+            public int numOfSupervisors;
+
+
+
+            public void setId(int activityId)
+            {
+                id = activityId;
+            }
+
+            public void setActivity_desc(string activityDesc)
+            {
+                activity_desc = activityDesc;
+            }
+
+            public void setNumOfStudents(int numOfstudent)
+            {
+                numOfStudents = numOfstudent;
+            }
+
+            public void setNumOfSupervisors(int numOfSupervisor)
+            {
+                numOfSupervisors = numOfSupervisor;
+            }
+
+            public int getId()
+            {
+                return id;
+            }
+
+            public string getActivity_desc()
+            {
+                return activity_desc;
+            }
+
+            public int getNumOfStudents()
+            {
+                return numOfStudents;
+            }
+
+            public int getNumOfSupervisors()
+            {
+                return numOfSupervisors;
+            }
+
+        }
+
+        public class ActivitiesList
+        {
+            List<Activities> activitiesList = new List<Activities>();
+
+            public void addList(Activities activity)
+            {
+                activitiesList.Add(activity);
+            }
+
+            public List<Activities> getList()
+            {
+                return activitiesList;
+            }
+        }
+
+
     }
 
 }
