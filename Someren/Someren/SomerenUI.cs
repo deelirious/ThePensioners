@@ -69,7 +69,7 @@ namespace Someren
             {
                 ListViewItem entryListItem = roomsListView.Items.Add(room.getRoomNumber().ToString());
                 entryListItem.SubItems.Add(room.getRoomCapacity().ToString());
-
+                
                 if (room.getRoomType() == true)
                 {
                     entryListItem.SubItems.Add("Teachers Room");
@@ -99,7 +99,7 @@ namespace Someren
             // we will add this list view to the panel later so the UI updates
             ListView teacherListView = new ListView();
 
-
+           
             teacherListView.Height = 370;
             teacherListView.Width = 370;
             teacherListView.View = View.Details;
@@ -118,7 +118,7 @@ namespace Someren
                 ListViewItem entryListItem = teacherListView.Items.Add(teacher.getId().ToString());
                 entryListItem.SubItems.Add(teacher.getFirstName());
                 entryListItem.SubItems.Add(teacher.getLastName());
-
+               
                 if (teacher.getIsSupervisor() == true)
                 {
                     entryListItem.SubItems.Add("yes");
@@ -300,7 +300,7 @@ namespace Someren
             // get the selected drinks
             List<int> drinkIds = new List<int>();
 
-            foreach (ListViewItem checkedDrink in barServiceListView.CheckedItems)
+            foreach(ListViewItem checkedDrink in barServiceListView.CheckedItems)
             {
                 int drinkId = int.Parse(checkedDrink.Text);
 
@@ -322,7 +322,7 @@ namespace Someren
 
             // invoke database query to store the stuff
             SomerenDB.DB_updateCashRegister(cashLines);
-
+            
             // reset the view
             foreach (ListViewItem student in studentsListView.Items)
             {
@@ -354,7 +354,7 @@ namespace Someren
             if (item.Checked)
             {
                 // we must add amount to total                
-                totalAmount += itemAmount;
+                 totalAmount += itemAmount;
             }
             // the event is somehow also fired when items are added initially
             // so we must make sure we don't go below 0
@@ -368,7 +368,7 @@ namespace Someren
             totalLabel.Tag = totalAmount;
         }
 
-        public static void addBarServiceUI(string name, decimal price, int amount)
+        public static void addBarServiceUI (string name, decimal price, int amount)
         {
             // make a new variable of type SomerenModel.BarService in order to store data to it
             SomerenModel.BarService newBarService = new SomerenModel.BarService();
@@ -377,9 +377,9 @@ namespace Someren
             newBarService.setDrinkName(name);
             newBarService.setDrinkPrice(price);
             newBarService.setStockAmount(amount);
-
+            
             // passing data to the DB layer
-            SomerenDB.DB_addBarService(newBarService);
+            SomerenDB.DB_addBarService(newBarService);       
         }
 
         public static void uppdateBarServiceUI(int id, string name, decimal price, int amount)
@@ -419,7 +419,7 @@ namespace Someren
             report = SomerenDB.DB_getRevenueReport();
 
             // Making a list and editing its format 
-
+            
             ListView reportListView = new ListView();
             reportListView.Height = 370;
             reportListView.Width = 370;
@@ -437,7 +437,7 @@ namespace Someren
                 ListViewItem entryListItem = reportListView.Items.Add(record.getNumberOfDrinks().ToString());
                 entryListItem.SubItems.Add(record.getTurnover().ToString());
                 entryListItem.SubItems.Add(record.getNumberOfCustomers().ToString());
-
+             
             }
 
             return reportListView;
@@ -474,113 +474,6 @@ namespace Someren
 
             return reportListView;
         }
-
-        public static Control showActivity()
-        {
-            // make a list for retrieving data from it
-            List<SomerenModel.Activities> activities = new List<SomerenModel.Activities>();
-
-            // linking the list to the DB connection in order to get data from it
-            activities = SomerenDB.DB_getActivities();
-
-            // Making a list and editing its format 
-            ListView activityListView = new ListView();
-            activityListView.Height = 370;
-            activityListView.Width = 370;
-            activityListView.View = View.Details;
-            activityListView.FullRowSelect = true;
-
-            // add columns to the list view
-            activityListView.Columns.Add("ID", -2, HorizontalAlignment.Left);
-            activityListView.Columns.Add("Activity Description", -2, HorizontalAlignment.Left);
-            activityListView.Columns.Add("Number of Students", -2, HorizontalAlignment.Left);
-            activityListView.Columns.Add("Number of Supervisors", -2, HorizontalAlignment.Left);
-
-
-
-            // store data to the list view
-            foreach (SomerenModel.Activities activity in activities)
-            {
-                ListViewItem entryListItem = activityListView.Items.Add(activity.getId().ToString());
-                entryListItem.SubItems.Add(activity.getActivity_desc().ToString());
-                entryListItem.SubItems.Add(activity.getNumOfStudents().ToString());
-                entryListItem.SubItems.Add(activity.getNumOfSupervisors().ToString());
-            }
-
-            // return a list view
-            return activityListView;
-        }
-      
-        public static void addActivity(string desc, int numOfStudents, int numberOfSupervisor)
-        {
-            // make a list for retrieving data from it
-            List<SomerenModel.Activities> activities = new List<SomerenModel.Activities>();
-
-            // linking the list to the DB connection in order to get data from it
-            activities = SomerenDB.DB_getActivities();
-
-            // make a new variable of type SomerenModel.Activities in order to store data to it
-            SomerenModel.Activities newActivity = new SomerenModel.Activities();
-
-            // make a list to store avtivity description in it
-            List<string> activityDesc = new List<string>();
-
-            // add avtivity description to the activityDesc list 
-            foreach (SomerenModel.Activities activity in activities)
-            {
-                activityDesc.Add(activity.getActivity_desc().ToLower());
-            }
-
-            // make a validation to know if the data entered is diffrenet from DB data
-            if (activityDesc.Contains(desc.ToLower()))
-            {
-                // show a message if the entered data exists in the DB
-                MessageBox.Show("You can not add the same activity twice, please enter another activity name!", 
-                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                //store data to the newActivity variable
-                newActivity.setActivity_desc(desc);
-                newActivity.setNumOfStudents(numOfStudents);
-                newActivity.setNumOfSupervisors(numberOfSupervisor);
-                // passing data to the DB layer
-                SomerenDB.DB_addActivity(newActivity);
-
-                // show a messagebox after a successfull addition
-                MessageBox.Show("You have successfully added a new activity!!\n" +
-                    "Enter Refresh the list to see the changes", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-         
-        }
-
-        public static void uppdateActivity(int id, string desc, int numOfStudents, int numberOfSupervisor)
-        {
-            // make a new variable of type SomerenModel.Activities in order to store data to it
-            SomerenModel.Activities newActivity = new SomerenModel.Activities();
-
-            // store data to the newActivity variable
-            newActivity.setId(id);
-            newActivity.setActivity_desc(desc);
-            newActivity.setNumOfStudents(numOfStudents);
-            newActivity.setNumOfSupervisors(numberOfSupervisor);
-
-            // passing data to the DB layer
-            SomerenDB.DB_uppdateActivity(newActivity);
-        }
-
-        public static void deleteActivity(int id)
-        {
-            // make a new variable of type SomerenModel.Activities in order to store data to it
-            SomerenModel.Activities newActivity = new SomerenModel.Activities();
-
-            // store data to the newActivity variable
-            newActivity.setId(id);
-
-            // passing data to the DB layer
-            SomerenDB.DB_deleteActivity(newActivity);
-        }
-
+        
     }
 }
