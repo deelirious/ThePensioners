@@ -277,21 +277,21 @@ namespace Someren
             }
             else
             {
-                if (MessageBox.Show("Are you sure that you want to remove this drink?","Warning"
-                    ,MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)==DialogResult.Yes)
+                if (MessageBox.Show("Are you sure that you want to remove this drink?", "Warning"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
                     // reading data from the textboxes
                     int id = int.Parse(boxId.Text);
 
                     // passing data to the UI layer
                     SomerenUI.deleteBarServiceUI(id);
-
+                    
                     // show a messagebox after clicking on update button
                     MessageBox.Show("You have successfully deleted a drink!!\n " +
                    "Enter Refresh the list to see the changes", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-               
+
             }
 
             // clearing data from textboxes
@@ -433,7 +433,7 @@ namespace Someren
         {
             panel1.Controls.Clear();
             groupBox1.Text = "Supervisors";
-            
+
             panel1.Controls.Add(Remove_super);
             panel1.Controls.Add(Remove_sup);
             panel1.Controls.Add(Remove_s);
@@ -441,7 +441,7 @@ namespace Someren
             panel1.Controls.Add(Add_sup);
             panel1.Controls.Add(Add_s);
             panel1.Controls.Add(SomerenUI.showListSupervisors());
-            
+
         }
 
         private void Remove_super_Click(object sender, EventArgs e)
@@ -452,8 +452,8 @@ namespace Someren
             else
             {
                 if ((MessageBox.Show("Are you sure that you wish to remove this supervisor?", "Exit SomerenAdministration?",
-         MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-         MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                   MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
                 {
                     SomerenUI.RemoveSuper(remove);
 
@@ -494,8 +494,8 @@ namespace Someren
             panel1.Controls.Add(Add_s);
             panel1.Controls.Add(SomerenUI.showListSupervisors());
         }
-                
-            
+
+
         private void activiteitenlijstToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
@@ -535,14 +535,8 @@ namespace Someren
                 int numberOfStudent = int.Parse(activityStudBox.Text);
                 int numberOfSupervisor = int.Parse(activitySuperBox.Text);
 
-                //if ()
-                //{
-
-                //}
                 // passing data to the UI layer
                 SomerenUI.addActivity(desc, numberOfStudent, numberOfSupervisor);
-
-               
             }
 
             // clearing data from textboxes
@@ -572,7 +566,7 @@ namespace Someren
 
                 // passing data to the UI layer
                 SomerenUI.uppdateActivity(id, desc, numberOfStudent, numberOfSupervisor);
-
+               
                 // show a messagebox after clicking on update button
                 MessageBox.Show("You have successfully updated a activity!!\n" +
                     "Enter Refresh the list to see the changes", "",
@@ -599,18 +593,17 @@ namespace Someren
                 // reading data from the textboxes
                 int id = int.Parse(activityIdBox.Text);
 
-                if (MessageBox.Show("Are you sure that you wish to remove this activity?","Warning"
-                    ,MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation)== DialogResult.Yes)
+                if (MessageBox.Show("Are you sure that you wish to remove this activity?", "Warning"
+                    , MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
                     // passing data to the UI layer
                     SomerenUI.deleteActivity(id);
-
+                   
                     // show a messagebox after clicking on update button
                     MessageBox.Show("You have successfully deleted a activity!!\n " +
                    "Enter Refresh the list to see the changes", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-               
             }
 
             // clearing data from textboxes
@@ -618,7 +611,6 @@ namespace Someren
             activityDescBox.Clear();
             activityStudBox.Clear();
             activitySuperBox.Clear();
-
         }
 
         private void activityRefreshBtn_Click(object sender, EventArgs e)

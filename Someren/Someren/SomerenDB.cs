@@ -354,7 +354,7 @@ namespace Someren
                 SomerenModel.Supervisor record = new SomerenModel.Supervisor();
                 record.setFirstName((string)reader["FirstName"]);
                 record.setLastName((string)reader["LastName"]);
-               
+
                 supervisors.Add(record);
             }
             reader.Close();
@@ -366,23 +366,23 @@ namespace Someren
         public static void DB_removeSupervisor(string remove_supervisor)
         {
             SqlConnection connection = openConnectionDB();
-           // List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
+            // List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
 
             //put the query into string builder
             StringBuilder sb = new StringBuilder();
-            sb.Append("UPDATE Teachers SET IsSupervisor = '0'WHERE LastName like '" + remove_supervisor+"'");
+            sb.Append("UPDATE Teachers SET IsSupervisor = '0'WHERE LastName like '" + remove_supervisor + "'");
 
             String sql = sb.ToString();
 
             //start connection with DB
             SqlCommand command = new SqlCommand(sql, connection);
             SqlDataReader reader = command.ExecuteReader();
-              while (reader.Read())
-              {
+            while (reader.Read())
+            {
                 command.ExecuteNonQuery();
             }
-              reader.Close();
-            
+            reader.Close();
+
             connection.Close();
         }
 
@@ -437,7 +437,6 @@ namespace Someren
             // close all connections
             reader.Close();
             connection.Close();
-
 
             return activityList;
         }

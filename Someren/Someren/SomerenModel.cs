@@ -407,7 +407,7 @@ namespace Someren
             {
                 return LastName;
             }
-           }
+        }
 
         public class SupervisorList
         {
@@ -423,6 +423,7 @@ namespace Someren
                 return SupervisorsList;
             }
         }
+
         // class for activities
         public class Activities
         {
@@ -430,8 +431,6 @@ namespace Someren
             public string activity_desc;
             public int numOfStudents;
             public int numOfSupervisors;
-
-
 
             public void setId(int activityId)
             {
@@ -472,7 +471,6 @@ namespace Someren
             {
                 return numOfSupervisors;
             }
-
         }
 
         public class ActivitiesList

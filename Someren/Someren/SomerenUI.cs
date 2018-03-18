@@ -485,7 +485,7 @@ namespace Someren
             // Making a list and editing its format 
 
             ListView supervisorListView = new ListView();
-            
+
             supervisorListView.Height = 370;
             supervisorListView.Width = 370;
             supervisorListView.View = View.Details;
@@ -509,7 +509,7 @@ namespace Someren
         public static void RemoveSuper(string remove_supervisor)
         {
             SomerenDB.DB_removeSupervisor(remove_supervisor);
-            
+
         }
 
         public static void AddSuper(string add_supervisor)
@@ -538,8 +538,6 @@ namespace Someren
             activityListView.Columns.Add("Number of Students", -2, HorizontalAlignment.Left);
             activityListView.Columns.Add("Number of Supervisors", -2, HorizontalAlignment.Left);
 
-
-
             // store data to the list view
             foreach (SomerenModel.Activities activity in activities)
             {
@@ -552,7 +550,7 @@ namespace Someren
             // return a list view
             return activityListView;
         }
-      
+
         public static void addActivity(string desc, int numOfStudents, int numberOfSupervisor)
         {
             // make a list for retrieving data from it
@@ -577,7 +575,7 @@ namespace Someren
             if (activityDesc.Contains(desc.ToLower()))
             {
                 // show a message if the entered data exists in the DB
-                MessageBox.Show("You can not add the same activity twice, please enter another activity name!", 
+                MessageBox.Show("You can not add the same activity twice, please enter another activity name!",
                     "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -594,7 +592,7 @@ namespace Someren
                     "Enter Refresh the list to see the changes", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-         
+
         }
 
         public static void uppdateActivity(int id, string desc, int numOfStudents, int numberOfSupervisor)
@@ -623,6 +621,8 @@ namespace Someren
             // passing data to the DB layer
             SomerenDB.DB_deleteActivity(newActivity);
         }
+
+
 
     }
 }
