@@ -490,7 +490,67 @@ namespace Someren
             }
         }
 
+        public class TimetableActivity
+        {
+            private int activityId;
+            private string activityDescription;
+            private List<string> supervisors = new List<string>();
 
+            private DateTime date;
+            private int startTime;
+            private int endTime;
+
+            public int getActivityId()
+            {
+                return activityId;
+            }
+            public void setActivityId(int value)
+            {
+                activityId = value;
+            }
+            public string getActivityDescription()
+            {
+                return activityDescription;
+            }
+            public void setActivityDescription(string value)
+            {
+                activityDescription = value;
+            }
+            public List<string> getSupervisors()
+            {
+                return supervisors;
+            }
+            public void addSupervisor(string firstName, string lastName)
+            {
+                // make sure the first name and last name are set
+                if (firstName != null && lastName != null)
+                {
+                    supervisors.Add(firstName + " " + lastName);
+                }
+                else
+                {
+                    supervisors.Add("Unsupervised");
+                }
+            }
+            public DateTime getDate()
+            {
+                return date;
+            }
+            public void setSlot(DateTime date, int startTime, int endTime)
+            {
+                this.date = date;
+                this.startTime = startTime;
+                this.endTime = endTime;
+            }
+            public int getStartTime()
+            {
+                return startTime;
+            }
+            public int getEndTime()
+            {
+                return endTime;
+            }
+        }
     }
 
 }
