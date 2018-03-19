@@ -514,7 +514,28 @@ namespace Someren
 
         public static void AddSuper(string add_supervisor)
         {
-            SomerenDB.DB_AddSupervisor(add_supervisor);
+            
+            List<SomerenModel.Supervisor> supervisors = new List<SomerenModel.Supervisor>();
+
+            // to get data from DataBase
+            supervisors = SomerenDB.DB_getSupervisors();
+            List<string> supervisorsStrings = new List<string>();
+            foreach (SomerenModel.Supervisor supervisor in supervisors)
+            {
+                supervisorsStrings.Add(supervisor.getLastName().ToLower());
+            }
+
+            // validation if the teacher is a supervisor
+            if (supervisorsStrings.Contains(add_supervisor.ToLower()))
+            {
+                // show a message 
+                MessageBox.Show("This teacher is already a supervisor! Choose another one!",
+                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else {
+                SomerenDB.DB_AddSupervisor(add_supervisor);
+            }
+
         }
 
         public static Control[] showTimetable()
